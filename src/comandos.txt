@@ -1,0 +1,2 @@
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+quit
