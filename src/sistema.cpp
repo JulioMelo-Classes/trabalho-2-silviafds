@@ -1,3 +1,4 @@
+#include "usuario.h"
 #include "sistema.h"
 #include <iostream>
 #include <sstream>
@@ -11,6 +12,7 @@ string Sistema::quit() {
 }
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
+  cout << "\nO create-user não está implementado ainda\n";
   return "create_user NÃO IMPLEMENTADO";
 }
 
