@@ -23,18 +23,32 @@ string Sistema::create_user (const string email, const string senha, const strin
   usuarios.push_back(st_nome);
   usuarios.push_back(st_email);
   usuarios.push_back(st_senha);
-  int tam, result;
+
+  int tam, result, tam_email;
   tam = usuarios.size();
-  if(tam == 3){
+  if(tam == 3){//ele é o 1º usuario a ser criado
     result = 1;
     id_usuario.push_back(1);
+    email_validos.push_back(st_email.email);
+    return "\nUsuário criado\n";
+
   }else if(tam > 3){
     result = tam/3;
-    //cout << "\nvalor de result: " << result;
+    tam_email = email_validos.size();
+    for(int i = 0; i < tam_email; i++){
+      if(email_validos[i] != st_email.email){
+      cout <<"\nsão diferentes\n";
+      }else{
+        cout << "\nsão iguais\n";
+      }
+    }
+
+    id_usuario.push_back(result);
+    email_validos.push_back(st_email.email);
   }
 
-  cout << "\ntamanho: " << tam << "\n";
-  cout << "\nvalor de result: " << result << endl;
+  //cout << "\ntamanho: " << tam << "\n";
+  //cout << "\nvalor de result: " << result << endl;
   //cout << "\nO id: " << a.id << "\n";
  /* cout << "nome usuario: " << st_nome.nome << "\n";
   cout << "email usuario: " << st_email.email << "\n";

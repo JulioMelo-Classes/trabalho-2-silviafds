@@ -21,7 +21,7 @@ class Sistema {
   public:
 
 		vector<int> id_usuario;
-
+		vector<string> email_validos;
 		/*! Encerra o funcionamento do Concordo, o programa termina ao executar este comando.
 				@return uma string com a mensagem "Saindo.."
 		*/
