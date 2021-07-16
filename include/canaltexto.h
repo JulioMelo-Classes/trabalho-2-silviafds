@@ -6,7 +6,7 @@
 using namespace std;
 
 class CanalTexto{
-	private:
+	public:
 		string nome;
 		vector<Mensagem> mensagens;
 };

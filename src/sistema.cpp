@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
-
+#include <string>
+#include <vector>
 using namespace std;
 
 /* COMANDOS */
@@ -12,7 +13,33 @@ string Sistema::quit() {
 }
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
-  cout << "\nO create-user não está implementado ainda\n";
+  Usuario a, st_email, st_senha, st_nome;
+  st_nome.nome = nome;
+  st_email.email = email;
+  st_senha.senha = senha;
+  a.id;
+  a.id = 1;
+
+  usuarios.push_back(st_nome);
+  usuarios.push_back(st_email);
+  usuarios.push_back(st_senha);
+  int tam, result;
+  tam = usuarios.size();
+  if(tam == 3){
+    result = 1;
+    id_usuario.push_back(1);
+  }else if(tam > 3){
+    result = tam/3;
+    //cout << "\nvalor de result: " << result;
+  }
+
+  cout << "\ntamanho: " << tam << "\n";
+  cout << "\nvalor de result: " << result << endl;
+  //cout << "\nO id: " << a.id << "\n";
+ /* cout << "nome usuario: " << st_nome.nome << "\n";
+  cout << "email usuario: " << st_email.email << "\n";
+  cout << "senha usuario: " << st_senha.senha << "\n";*/
+  //cout << "\nO create-user não está implementado ainda\n";
   return "create_user NÃO IMPLEMENTADO";
 }
 

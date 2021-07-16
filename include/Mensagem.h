@@ -4,7 +4,7 @@
 using namespace std;
 
 class Mensagem{
-	private:
+	public:
 		string dataHora;
         int enviadaPor;
         string conteudo;
