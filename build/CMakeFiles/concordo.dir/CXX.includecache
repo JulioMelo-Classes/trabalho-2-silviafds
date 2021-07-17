@@ -53,11 +53,15 @@ sistema.h
 /home/silvia/Downloads/trabalho-2-silviafds/src/sistema.h
 iostream
 -
+algorithm
+-
 sstream
 -
 algorithm
 -
 string
+-
+cstring
 -
 vector
 -
