@@ -13,63 +13,66 @@ string Sistema::quit() {
 }
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
-  Usuario a, st_email, st_senha, st_nome;
-  st_nome.nome = nome;
-  st_email.email = email;
-  st_senha.senha = senha;
-  a.id;
-  a.id = 1;
-
-
-  int tam, result, tam_email, aux = 0;
+  Usuario a, st_nome;
+  
+  st_nome.email = email;
+  
+  int tam, id_result, tam_email, aux = 0;
   tam = usuarios.size();
 
   if(tam == 0){//ele é o 1º usuario a ser criado
-    result = 1;
+    st_nome.id = 1;
+    st_nome.email = email;
+    st_nome.senha = senha;
+    st_nome.nome = nome;
 
     usuarios.push_back(st_nome);
-    usuarios.push_back(st_email);
-    usuarios.push_back(st_senha);
-    
-    tam = 3;
 
-    id_usuario.push_back(1);
-    email_validos.push_back(st_email.email);
+    email_validos.push_back(st_nome.email);
 
+    /*cout << "\n";
+    cout << st_nome.id << "\n";
+    cout << st_nome.email << "\n";
+    cout << st_nome.senha << "\n";
+    cout << st_nome.nome << "\n";*/
+
+    tam = usuarios.size();
+    //cout << "Tamanho: " << tam << endl;
     return "\nUsuário criado!\n";
 
-  }else if(tam >= 3){
-    tam_email = email_validos.size();
-
-    for(int i = 0; i < tam_email; i++){//descobre se o usuário existe
-      if(email_validos[i] == st_email.email){
+  } else if (tam >= 1){
+    
+    for(int i = 0; i < usuarios.size(); i++){//descobre se o usuário existe
+      if( email_validos[i] == st_nome.email ){
         aux++;
       }
     }
-   
-    if(aux > 0){
-      return "\nUsuário já existe\n";
-    }else{
-      email_validos.push_back(st_email.email);//preenche no vector o novo email valido p/ futuras comparações
-      usuarios.push_back(st_nome);//vector do tipo usuario preenchendo com informações de usuarios criados
-      usuarios.push_back(st_email);
-      usuarios.push_back(st_senha);
-      tam = usuarios.size();
-      result = tam/3;
-      id_usuario.push_back(result);
-      return "\nUsuário criado\n";
-    }
-  }
 
- /* cout << "\ntamanho: " << tam << "\n";
-  cout << "\nvalor de result: " << result << endl;*/
-  //cout << "\nO id: " << a.id << "\n";
- /* cout << "nome usuario: " << st_nome.nome << "\n";
-  cout << "email usuario: " << st_email.email << "\n";
-  cout << "senha usuario: " << st_senha.senha << "\n";*/
-  //cout << "\nO create-user não está implementado ainda\n";
-  return "create_user NÃO IMPLEMENTADO";
+    if(aux > 0){
+      return "\nUsuário já existe!\n";
+    }else{
+      st_nome.id = tam + 1;
+      st_nome.email = email;
+      st_nome.senha = senha;
+      st_nome.nome = nome;
+
+      usuarios.push_back(st_nome);
+      email_validos.push_back(st_nome.email);
+
+      /*cout << st_nome.id << "\n";
+      cout << st_nome.email << "\n";
+      cout << st_nome.senha << "\n";
+      cout << st_nome.nome << "\n";*/
+
+      tam = usuarios.size();
+      //cout << "Tamanho:: " << tam << endl;
+    }
+
+  }
+  return "\nUsuário criado\n";
 }
+  
+
 
 string Sistema::login(const string email, const string senha) {
   return "login NÃO IMPLEMENTADO";
