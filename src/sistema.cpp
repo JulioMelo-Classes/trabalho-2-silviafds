@@ -20,35 +20,49 @@ string Sistema::create_user (const string email, const string senha, const strin
   a.id;
   a.id = 1;
 
-  usuarios.push_back(st_nome);
-  usuarios.push_back(st_email);
-  usuarios.push_back(st_senha);
 
-  int tam, result, tam_email;
+  int tam, result, tam_email, aux = 0;
   tam = usuarios.size();
-  if(tam == 3){//ele é o 1º usuario a ser criado
+
+  if(tam == 0){//ele é o 1º usuario a ser criado
     result = 1;
+
+    usuarios.push_back(st_nome);
+    usuarios.push_back(st_email);
+    usuarios.push_back(st_senha);
+    
+    tam = 3;
+
     id_usuario.push_back(1);
     email_validos.push_back(st_email.email);
-    return "\nUsuário criado\n";
 
-  }else if(tam > 3){
+    return "\nUsuário criado!\n";
+
+  }else if(tam >= 3){
     result = tam/3;
     tam_email = email_validos.size();
-    for(int i = 0; i < tam_email; i++){
-      if(email_validos[i] != st_email.email){
-      cout <<"\nsão diferentes\n";
-      }else{
-        cout << "\nsão iguais\n";
+
+    for(int i = 0; i < tam_email; i++){//descobre se o usuário existe
+      if(email_validos[i] == st_email.email){
+        aux++;
       }
     }
+   
+    if(aux > 0){
+      return "\nUsuário já existe\n";
+    }else{
+      email_validos.push_back(st_email.email);//preenche no vector o novo email valido p/ futuras comparações
+      id_usuario.push_back(result);//preenche com id
+      usuarios.push_back(st_nome);//vector do tipo usuario preenchendo com informações de usuarios criados
+      usuarios.push_back(st_email);
+      usuarios.push_back(st_senha);
 
-    id_usuario.push_back(result);
-    email_validos.push_back(st_email.email);
+      return "\nUsuário criado\n";
+    }
   }
 
-  //cout << "\ntamanho: " << tam << "\n";
-  //cout << "\nvalor de result: " << result << endl;
+ /* cout << "\ntamanho: " << tam << "\n";
+  cout << "\nvalor de result: " << result << endl;*/
   //cout << "\nO id: " << a.id << "\n";
  /* cout << "nome usuario: " << st_nome.nome << "\n";
   cout << "email usuario: " << st_email.email << "\n";
