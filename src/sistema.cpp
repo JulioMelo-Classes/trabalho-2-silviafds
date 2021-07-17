@@ -70,6 +70,7 @@ string Sistema::create_user (const string email, const string senha, const strin
 
   }
   return "\nUsuário criado\n";
+
 }
   
 
