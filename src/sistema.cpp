@@ -14,11 +14,13 @@ string Sistema::quit() {
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
   Usuario a, st_email, st_senha, st_nome;
-  st_nome.nome = nome;
-  st_email.email = email;
-  st_senha.senha = senha;
   a.id;
   a.id = 1;
+  //st_nome.id = id;
+  st_nome.nome = nome;
+  st_nome.email = email;
+  st_nome.senha = senha;
+  
 
 
   int tam, result, tam_email, aux = 0;
@@ -27,13 +29,12 @@ string Sistema::create_user (const string email, const string senha, const strin
   if(tam == 0){//ele é o 1º usuario a ser criado
     result = 1;
 
+    st_nome.id = 1;
     usuarios.push_back(st_nome);
-    usuarios.push_back(st_email);
-    usuarios.push_back(st_senha);
-    
-    tam = 3;
 
-    id_usuario.push_back(1);
+    cout << st_nome.nome << endl;
+    
+    //id_usuario.push_back(1);
     email_validos.push_back(st_email.email);
 
     return "\nUsuário criado!\n";
