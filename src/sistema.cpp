@@ -39,7 +39,6 @@ string Sistema::create_user (const string email, const string senha, const strin
     return "\nUsuário criado!\n";
 
   }else if(tam >= 3){
-    result = tam/3;
     tam_email = email_validos.size();
 
     for(int i = 0; i < tam_email; i++){//descobre se o usuário existe
@@ -52,11 +51,12 @@ string Sistema::create_user (const string email, const string senha, const strin
       return "\nUsuário já existe\n";
     }else{
       email_validos.push_back(st_email.email);//preenche no vector o novo email valido p/ futuras comparações
-      id_usuario.push_back(result);//preenche com id
       usuarios.push_back(st_nome);//vector do tipo usuario preenchendo com informações de usuarios criados
       usuarios.push_back(st_email);
       usuarios.push_back(st_senha);
-
+      tam = usuarios.size();
+      result = tam/3;
+      id_usuario.push_back(result);
       return "\nUsuário criado\n";
     }
   }
