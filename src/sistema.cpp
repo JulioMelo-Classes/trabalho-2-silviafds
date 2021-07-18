@@ -75,39 +75,23 @@ string Sistema::create_user (const string email, const string senha, const strin
 }
   
 string Sistema::login(const string email, const string senha) {
-  Usuario rec;
-  string v;
-  int ret;
+  Usuario x;
+  x.email = email;
+  int aux = 0;
+  string completar("Logado como ");
+  completar += email;
   
-  rec.email = email;
-  validar_email.push_back(rec);
-
-  cout << "Mostrar email:::: " << rec.email << endl;
-  
-  if((email.compare(usuarios)) == 0){
-    cout << " is equal to "  << endl;
+  for(auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
+    if(email.compare((*ptr).email) == 0 && senha.compare((*ptr).senha) == 0){
+      aux++;
+    }
   }
 
-  /*ret = strcmp(rec, usuarios);
-  if (ret == 0){
-    cout << "sao iguais";
-  }*/
+  if(aux > 0){
+    return  completar;
+  }
+  return "\nSenha ou usuário inválidos!\n";
 
-  int x = usuarios.size();
-  cout << "tamanho: " << x << endl;
-
- 
-  /*for(int i = 0; i < x; i++){
-    if(validar_email[0] == usuarios[i]){
-      cout << "\nsão iguais\n";
-    }
-  }*/
-
-  /*if (strcasecmp(v.c_str(), email.c_str()) == 0) {funciona usando strings
-        cout << "strings: text1 and text2 match." << endl;
-  }*/
-
-  return "login NÃO IMPLEMENTADO";
 }
 
 string Sistema::disconnect(int id) {

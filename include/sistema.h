@@ -23,6 +23,9 @@ class Sistema {
 		vector<int> id_usuario;
 		vector<string> email_validos;
 		std::vector<Usuario> validar_email;
+		std::vector<Usuario> comp_usu;
+		vector<Usuario>::iterator ptr;
+		vector<Usuario>::iterator ptx;
 		/*! Encerra o funcionamento do Concordo, o programa termina ao executar este comando.
 				@return uma string com a mensagem "Saindo.."
 		*/
