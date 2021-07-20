@@ -31,14 +31,7 @@ string Sistema::create_user (const string email, const string senha, const strin
     usuarios.push_back(st_nome);
     email_validos.push_back(st_nome.email);
 
-    /*cout << "\n";
-    cout << st_nome.id << "\n";
-    cout << st_nome.email << "\n";
-    cout << st_nome.senha << "\n";
-    cout << st_nome.nome << "\n";*/
-
     tam = usuarios.size();
-    //cout << "Tamanho: " << tam << endl;
     return "\nUsuário criado!\n";
 
   } else if (tam >= 1){
@@ -60,13 +53,7 @@ string Sistema::create_user (const string email, const string senha, const strin
       usuarios.push_back(st_nome);
       email_validos.push_back(st_nome.email);
 
-      /*cout << st_nome.id << "\n";
-      cout << st_nome.email << "\n";
-      cout << st_nome.senha << "\n";
-      cout << st_nome.nome << "\n";*/
-
       tam = usuarios.size();
-      //cout << "Tamanho:: " << tam << endl;
     }
 
   }
@@ -75,8 +62,7 @@ string Sistema::create_user (const string email, const string senha, const strin
 }
   
 string Sistema::login(const string email, const string senha) {
-  Usuario x;
-  x.email = email;
+  
   int aux = 0;
   string completar("Logado como ");
   completar += email;
@@ -84,18 +70,40 @@ string Sistema::login(const string email, const string senha) {
   for(auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
     if(email.compare((*ptr).email) == 0 && senha.compare((*ptr).senha) == 0){
       aux++;
+      usuariosLogados.insert({(*ptr).id, {" " , " "}});
     }
-  }
+  } 
+
+  for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+    cout << " " << itr->first << "\n";
+  }   
 
   if(aux > 0){
-    return  completar;
+    return completar;
   }
+
+  
+
   return "\nSenha ou usuário inválidos!\n";
 
 }
 
 string Sistema::disconnect(int id) {
-  return "disconnect NÃO IMPLEMENTADO";
+
+  Usuario avisoemail;
+
+  for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+    if(usuariosLogados.find(id+1) != usuariosLogados.end()){
+      usuariosLogados.erase(id+1);
+      return "Usuário desconectado.";
+    }
+    else{
+      return "Usuario já foi desconectado.";
+    }
+  }
+
+  //return "Usuário desconectado.";
+  //return "disconnect NÃO IMPLEMENTADO";
 }
 
 string Sistema::create_server(int id, const string nome) {
