@@ -1,12 +1,27 @@
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
 login silviagfernandes1@gmail.com senha123
+
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+create-user usuario001@gmail.com senha13 Usuario Xyz
+login usuario001@gmail.com senha13 Usuario Xyz
 create-user felipecampos2@gmail.com senh899 Felipe Campos
 login felipecampos2@gmail.com senh899
-disconnect 0
+disconnect 2
+disconnect 3
+
 disconnect 0
 create-user usuario001@gmail.com senha13 Usuario Xyz
 login usuario001@gmail.com senha13 Usuario Xyz
+
 disconnect 0
 create-user marialima@gmail.com senha456 Maria Lima
+disconnect 0
 login marialima@gmail.com senha456
+
+
+create-user felipecampos2@gmail.com senh899 Felipe Campos
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+disconnect 0
+
