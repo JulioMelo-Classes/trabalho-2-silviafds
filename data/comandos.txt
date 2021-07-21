@@ -5,6 +5,15 @@ create-user usuario001@gmail.com senha13 Usuario Xyz
 login usuario001@gmail.com senha13 Usuario Xyz
 create-server 2 katyperry
 create-server 2 rihanna
+set-server-desc 2 katyperry “Ela é uma ótima cantora.”
+set-server-desc 1 rihanna “Ela também é.”
+
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 rihanna
+set-server-desc 2 rihanna “Ela também é.”
+set-server-desc 2 katyperry “Ela é uma ótima cantora.”
+
 
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
 login silviagfernandes1@gmail.com senha123

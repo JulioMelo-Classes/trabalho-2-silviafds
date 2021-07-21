@@ -110,7 +110,6 @@ string Sistema::disconnect(int id) {
         }
       } 
     }
-
   }
 
   return "Não está conectado";
@@ -142,7 +141,32 @@ string Sistema::create_server(int id, const string nome) {
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
-  return "set_server_desc NÃO IMPLEMENTADO";
+
+  Servidor teste(id, nome);
+  Servidor verificar_desc(descricao);
+  string completar3("Descrição do servidor '");
+  string completar4("' modificada!");
+  string completar5("Servidor '");
+  string completar6("' não existe!");
+
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if((*itr).getNome_servidor() == nome){
+      if((*itr).getID() == id){
+        completar3 += (*itr).getNome_servidor();
+        completar3 += completar4;
+        //cout << completar3 << endl;
+        return completar3;
+      }
+      else{
+        return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
+      }
+    }
+  }   
+
+  completar5 += nome;
+  completar5 += completar6;
+
+  return completar5;
 }
 
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {

@@ -17,7 +17,8 @@ class Servidor{
 	public:
 		Servidor(int id, string nome_servidor){
 			usuarioDonold = id;
-			nome = nome_servidor;			
+			nome = nome_servidor;	
+				
 		}
 
 		int getID(){
@@ -26,6 +27,14 @@ class Servidor{
 
 		string getNome_servidor(){
 			return nome;
+		}
+		
+		Servidor(string desc){
+			descricao = desc;
+		}
+
+		string getDescricao(){
+			return descricao;
 		}
 
 };
