@@ -131,7 +131,7 @@ string Sistema::create_server(int id, const string nome) {
   } else{
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){  
       if(nome.compare((*itr).getNome_servidor()) == 0){
-        return "Servidor já existe.";
+        return "Servidor com esse nome já existe.";
       }
     }
   }
