@@ -124,7 +124,6 @@ string Sistema::create_server(int id, const string nome) {
   
   cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
   cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;
-  //cout << "Servidor criado." << endl;
 
   if (tam == 0){
     servidores.push_back(nome_do_servidor);
@@ -134,19 +133,12 @@ string Sistema::create_server(int id, const string nome) {
       if(nome.compare((*itr).getNome_servidor()) == 0){
         return "Servidor já existe.";
       }
-      else{
-        cout << "Servidor criado." << endl;
-      }
     }
   }
 
   servidores.push_back(nome_do_servidor);
-  cout << "SERVIDORES: " << endl;
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    cout << ((*itr).getNome_servidor()) << " / ";
-  }
 
-  //return "Servidor criado.";
+  return "Servidor criado.";
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
