@@ -12,13 +12,13 @@
 
 // Sistema deve concentrar todas as operações do Concordo
 class Sistema {
-  private:
+	private:
 		std::vector<Servidor> servidores; //<! um vetor com todos os servidores
 		std::vector<Usuario> usuarios; //<! um vetor com todos os usuários cadastrados
 		std::map< int, std::pair<std::string, std::string> > usuariosLogados; //<! um vetor contendo os usuários que logaram no sistema
 		
 
-  public:
+	public:
 
 		vector<int> id_usuario;
 		vector<string> email_validos;

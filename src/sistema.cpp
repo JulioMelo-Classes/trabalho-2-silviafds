@@ -81,9 +81,7 @@ string Sistema::login(const string email, const string senha) {
 
   if(aux > 0){
     return completar;
-  }
-
-  
+  } 
 
   return "\nSenha ou usuário inválidos!\n";
 
@@ -103,7 +101,6 @@ string Sistema::disconnect(int id) {
   }else{//existem pessoas logadas
 
     if(usuariosLogados.find(id) != usuariosLogados.end()) {
-
       for(auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
         if((*ptr).id == chave){
           cout << (*ptr).email << endl;
@@ -120,7 +117,36 @@ string Sistema::disconnect(int id) {
 }
 
 string Sistema::create_server(int id, const string nome) {
-  return "create_server NÃO IMPLEMENTADO";
+
+  Servidor nome_do_servidor(id, nome);
+  int tam = servidores.size();
+  int aux = 0;
+  
+  cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
+  cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;
+  //cout << "Servidor criado." << endl;
+
+  if (tam == 0){
+    servidores.push_back(nome_do_servidor);
+    return "Servidor criado.";
+  } else{
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){  
+      if(nome.compare((*itr).getNome_servidor()) == 0){
+        return "Servidor já existe.";
+      }
+      else{
+        cout << "Servidor criado." << endl;
+      }
+    }
+  }
+
+  servidores.push_back(nome_do_servidor);
+  cout << "SERVIDORES: " << endl;
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    cout << ((*itr).getNome_servidor()) << " / ";
+  }
+
+  //return "Servidor criado.";
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
