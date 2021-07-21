@@ -46,6 +46,14 @@ class Servidor{
 			return codigoConvite;
 		}
 
+		Servidor(int id){
+			usuarioDonold = id;
+		}
+
+		int getID2(){
+			return usuarioDonold;
+		}
+
 };
 
 #endif

@@ -201,7 +201,18 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
 }
 
 string Sistema::list_servers(int id) {
-  return "list_servers NÃO IMPLEMENTADO";
+
+  Servidor lista_servidores(id);
+  string completar10("\n");
+
+  cout << "SERVIDORES:";
+  cout << endl;
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if((*itr).getID2() == id){
+      cout << ((*itr).getNome_servidor()) << endl;
+    }
+  }
+  return "\n";
 }
 
 string Sistema::remove_server(int id, const string nome) {

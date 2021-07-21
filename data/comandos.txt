@@ -11,8 +11,15 @@ set-server-desc 1 rihanna “Ela também é.”
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
 login silviagfernandes1@gmail.com senha123
 create-server 1 rihanna
+create-server 1 lady
 set-server-desc 1 rihanna “Ela também é.”
-set-server-invite-code 1 rihanna  
+set-server-invite-code 1 rihanna 987
+list-servers 1
+create-user usuario001@gmail.com senha13 Usuario Xyz
+login usuario001@gmail.com senha13 Usuario Xyz
+create-server 2 katyperry
+list-servers 2
+
 
 set-server-desc 2 katyperry “Ela é uma ótima cantora.”
 
