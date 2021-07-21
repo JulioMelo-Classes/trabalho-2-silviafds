@@ -7,6 +7,7 @@
 #include <string>
 #include <cstring>
 #include <vector>
+#include <map>
 using namespace std;
 
 /* COMANDOS */
@@ -90,43 +91,32 @@ string Sistema::login(const string email, const string senha) {
 
 string Sistema::disconnect(int id) {
   Usuario avisoemail;
-  int x = 0, y = 0;
+  string completar2("Desconectando usuário ");
+  int x = 0, y = 0, chave;
+  chave = id;
   x = usuariosLogados.size();//descobre tamanho do map
                             //se o map for 0 é porque ninguém fez login
                             //se o map for maior que 0 é pq pessoas fizeram login
-  cout << "\ntamanho do map: " << x << "\n";
-
- 
 
   if(x == 0){//quando não existe pessoas logadas
     return "Não está conectado";
   }else{//existem pessoas logadas
-    for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
-      if(usuariosLogados.find(id) != usuariosLogados.end()){
-        cout << "id para desconectar: " << itr->first << "\n";
 
-        usuariosLogados.erase(id);
-        return "Usuário desconectado.";
-      }
-      else{
-        return "Usuario já foi desconectado.";
-      }
+    if(usuariosLogados.find(id) != usuariosLogados.end()) {
+
+      for(auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
+        if((*ptr).id == chave){
+          cout << (*ptr).email << endl;
+          completar2 += (*ptr).email;
+          usuariosLogados.erase(id);
+          return completar2;
+        }
+      } 
     }
 
   }
 
-  /*for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
-    if(usuariosLogados.find(id+1) != usuariosLogados.end()){
-      usuariosLogados.erase(id+1);
-      return "Usuário desconectado.";
-    }
-    else{
-      return "Usuario já foi desconectado.";
-    }
-  }*/
-
-  //return "Usuário desconectado.";
-  return "disconnect NÃO IMPLEMENTADO";
+  return "Não está conectado";
 }
 
 string Sistema::create_server(int id, const string nome) {
