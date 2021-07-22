@@ -19,6 +19,8 @@ create-user usuario001@gmail.com senha13 Usuario Xyz
 login usuario001@gmail.com senha13 Usuario Xyz
 create-server 2 katyperry
 list-servers 2
+remove-server 1 rihanna
+
 
 
 set-server-desc 2 katyperry “Ela é uma ótima cantora.”

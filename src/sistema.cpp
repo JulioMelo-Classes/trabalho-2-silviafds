@@ -216,6 +216,33 @@ string Sistema::list_servers(int id) {
 }
 
 string Sistema::remove_server(int id, const string nome) {
+
+  Servidor remover(id, nome);
+  string aux_nome;
+  string completar11("Você não é dono(a) do servidor '");
+  string completar12("' .");
+  string completar13("Servidor '");
+  string completar14("' não encontrado.");
+
+  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+    if(((*ptr).getID()) == id){
+      if(((*ptr).getNome_servidor() == nome)){
+        aux_nome = ((*ptr).getNome_servidor());
+        cout << "Servidor '" << aux_nome << "' removido." << endl;
+        servidores.erase(ptr);
+
+      } else {
+        completar13 += nome;
+        completar13 += completar14;
+        return completar13;
+      }
+    } else {
+      completar11 += nome;
+      completar11 += completar12;
+      return completar11;
+    }
+  }
+
   return "remove_server NÃO IMPLEMENTADO";
 }
 
