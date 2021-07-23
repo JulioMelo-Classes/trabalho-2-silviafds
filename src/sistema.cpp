@@ -20,7 +20,7 @@ string Sistema::create_user (const string email, const string senha, const strin
   
   st_nome.email = email;
   
-  int tam, id_result, tam_email, aux = 0;
+  int tam, tam_email, aux = 0;
   tam = usuarios.size();
 
   if(tam == 0){//ele é o 1º usuario a ser criado
@@ -31,7 +31,8 @@ string Sistema::create_user (const string email, const string senha, const strin
 
     usuarios.push_back(st_nome);
     email_validos.push_back(st_nome.email);
-
+    cout << "\nTESNTANDO O PRIMEIO USUARIO SENDO CRIADO\n";
+    cout << "\ntamanho dentro da func: " << tam << endl;
     tam = usuarios.size();
     return "\nUsuário criado!\n";
 
@@ -44,13 +45,12 @@ string Sistema::create_user (const string email, const string senha, const strin
     }
 
     if(aux > 0){
-      return "\nUsuário já existe!\n";
+      return "Usuário já existe!\n";
     }else{
       st_nome.id = tam + 1;
       st_nome.email = email;
       st_nome.senha = senha;
       st_nome.nome = nome;
-
       usuarios.push_back(st_nome);
       email_validos.push_back(st_nome.email);
 
@@ -58,7 +58,7 @@ string Sistema::create_user (const string email, const string senha, const strin
     }
 
   }
-  return "\nUsuário criado\n";
+  return "Usuário criado\n";
 }
   
 string Sistema::login(const string email, const string senha) {
@@ -73,10 +73,6 @@ string Sistema::login(const string email, const string senha) {
       usuariosLogados.insert({(*ptr).id, {" " , " "}});
     }
   } 
-
-  /*for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
-    cout << "quem fez login foi o id: " << itr->first << "\n";
-  } */  
 
   if(aux > 0){
     return completar;
@@ -102,7 +98,6 @@ string Sistema::disconnect(int id) {
     if(usuariosLogados.find(id) != usuariosLogados.end()) {
       for(auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
         if((*ptr).id == chave){
-          cout << (*ptr).email << endl;
           completar2 += (*ptr).email;
           usuariosLogados.erase(id);
           return completar2;
@@ -120,23 +115,25 @@ string Sistema::create_server(int id, const string nome) {
   int tam = servidores.size();
   int aux = 0;
   
-  //cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
-  //cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;
+  /*cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
+  cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;*/
 
-  if (tam == 0){
+  if(tam == 0 && id > 0){
     servidores.push_back(nome_do_servidor);
-    return "Servidor criado.";
-  } else{
+    return "Servidor criado";
+  } else {
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){  
       if(nome.compare((*itr).getNome_servidor()) == 0){
+        aux++;
         return "Servidor com esse nome já existe.";
       }
     }
   }
+  if(aux == 0 && id > 0){
+    servidores.push_back(nome_do_servidor);
+  }
 
-  servidores.push_back(nome_do_servidor);
-
-  return "Servidor criado.";
+  return "Servidor criado";
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
@@ -154,7 +151,6 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
         verificar_desc.getDescricao();
         completar3 += (*itr).getNome_servidor();
         completar3 += completar4;
-        cout << "Descrição: " << verificar_desc.getDescricao();
         return completar3;
       }
       else{
@@ -222,14 +218,16 @@ string Sistema::remove_server(int id, const string nome) {
   string completar12("' .");
   string completar13("Servidor '");
   string completar14("' não encontrado.");
+  string completar15("' removido");
 
   for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
     if(((*ptr).getID()) == id){
       if(((*ptr).getNome_servidor() == nome)){
         aux_nome = ((*ptr).getNome_servidor());
-        cout << "Servidor '" << aux_nome << "' removido." << endl;
         servidores.erase(ptr);
-
+        completar13 += aux_nome;
+        completar13 += completar15;
+        return completar13;
       } else {
         completar13 += nome;
         completar13 += completar14;
