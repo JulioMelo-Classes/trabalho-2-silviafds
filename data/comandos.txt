@@ -8,8 +8,21 @@ create-server 2 rihanna
 set-server-desc 2 katyperry “Ela é uma ótima cantora.”
 set-server-desc 1 rihanna “Ela também é.”
 
+
+
+create-user isaacfranco@imd.ufrn.br senha12345 Isaac Franco Fernandes
+login isaacfranco@imd.ufrn.br senhaerrada
+login isaacfranco@imd.ufrn.br senha12345
+create-server disciplina_lp1
+disconnect
+login joaquim@uol.com.br senhajoaquim
+quit
+
+
+
+
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
-login silviagfernandes1@gmail.com senha123
+login silviagfernandes1@gmail.com senha13
 create-server 1 rihanna
 create-server 1 lady
 set-server-desc 1 rihanna “Ela também é.”

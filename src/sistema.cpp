@@ -59,7 +59,6 @@ string Sistema::create_user (const string email, const string senha, const strin
 
   }
   return "\nUsuário criado\n";
-
 }
   
 string Sistema::login(const string email, const string senha) {
@@ -75,9 +74,9 @@ string Sistema::login(const string email, const string senha) {
     }
   } 
 
-  for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+  /*for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
     cout << "quem fez login foi o id: " << itr->first << "\n";
-  }   
+  } */  
 
   if(aux > 0){
     return completar;
@@ -97,7 +96,7 @@ string Sistema::disconnect(int id) {
                             //se o map for maior que 0 é pq pessoas fizeram login
 
   if(x == 0){//quando não existe pessoas logadas
-    return "Não está conectado";
+    return "Não está conectado.";
   }else{//existem pessoas logadas
 
     if(usuariosLogados.find(id) != usuariosLogados.end()) {
@@ -112,7 +111,7 @@ string Sistema::disconnect(int id) {
     }
   }
 
-  return "Não está conectado";
+  return "Não está conectado.";
 }
 
 string Sistema::create_server(int id, const string nome) {
@@ -121,8 +120,8 @@ string Sistema::create_server(int id, const string nome) {
   int tam = servidores.size();
   int aux = 0;
   
-  cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
-  cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;
+  //cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
+  //cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;
 
   if (tam == 0){
     servidores.push_back(nome_do_servidor);
