@@ -1,12 +1,106 @@
+-----create------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+create-user alexa88@gmail.com senha851 Alexa Mendes
+create-user mariana1@gmail.com senha888 Mariana
+create-user alexa88@gmail.com senha851 Alexa Mendes
+
+
+-----login-------
 create-user silviagfernandes1@gmail.com senha123 Silvia Goes
 login silviagfernandes1@gmail.com senha123
-create-server 1 rihanna
-create-user usuario001@gmail.com senha13 Usuario Xyz
-login usuario001@gmail.com senha13 Usuario Xyz
-create-server 2 katyperry
-create-server 2 rihanna
-set-server-desc 2 katyperry “Ela é uma ótima cantora.”
-set-server-desc 1 rihanna “Ela também é.”
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa898@gmail.com senha851
+create-user mariana1@gmail.com senha888 Mariana
+login marian1@gmail.com senha888
+
+
+-----logout--------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+create-user mariana1@gmail.com senha888 Mariana
+login mariana1@gmail.com senha888
+disconnect 1
+disconnect 2
+disconnect 3
+disconnect 4
+
+
+-----create server-----
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 KATYPERRY
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+create-server 2 BEYONCE
+create-user mariana1@gmail.com senha888 Mariana
+login mariana1@gmail.com senha888
+create-server 3 BEYONCE
+
+
+-----mudar descrição servidor-------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 KATYPERRY
+set-server-desc 1 KATYPERRY “TEM SPOTLIGHT”
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+create-server 2 BEYONCE
+set-server-desc 2 BEYONCE "TEM GRAMMY"
+
+
+-----Setar código de convite para o servidor----------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 KATYPERRY
+set-server-desc 1 KATYPERRY “TEM SPOTLIGHT”
+set-server-invite-code 1 KATYPERRY
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+create-server 2 BEYONCE
+set-server-desc 2 BEYONCE "TEM GRAMMY"
+set-server-invite-code 2 BEYONCE 222
+
+
+------Listar servidores---------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 KATYPERRY
+create-server 1 RIHANNA
+create-server 1 BEYONCE
+create-server 1 FERRARI
+create-server 1 JACA
+set-server-desc 1 KATYPERRY “TEM SPOTLIGHT”
+set-server-invite-code 1 KATYPERRY
+list-servers 1
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+create-server 2 SAMSUNG
+create-server 2 ACER
+create-server 2 XIAOMI
+create-server 2 LENOVO
+create-server 2 DELL
+create-server 2 MOTOROLA
+create-server 2 SONY
+list-servers 2
+
+
+------remover servidor---------
+create-user silviagfernandes1@gmail.com senha123 Silvia Goes
+login silviagfernandes1@gmail.com senha123
+create-server 1 KATYPERRY
+remove-server 1 BEY
+create-user alexa88@gmail.com senha851 Alexa Mendes
+login alexa88@gmail.com senha851
+remove-server 2 KATYPERRY
+
+
+
+
+
 
 
 
