@@ -1,3 +1,0 @@
-create-user silviagfernandes1@gmail.com senha123 Silvia Goes
-create-user brenda2@outlook.com senha987 Brenda Dantas
-quit
