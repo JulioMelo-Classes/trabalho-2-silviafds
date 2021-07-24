@@ -15,6 +15,15 @@ string Sistema::quit() {
   return "Saindo...";
 }
 
+/*! 
+ * @brief Função na qual cria usuário. 
+ *
+ * @param email é uma string onde está armazenado o email correspondente ao usuário.
+ * @param senha é uma string onde está armazenada a senha correspondente ao usuário.
+ * @param nome é uma string onde está armazenado o nome correspondente ao usuário.
+ *
+ * @return retorna a mensagem que o usuário foi criado ou que já existe (a depender da situação).
+ */
 string Sistema::create_user (const string email, const string senha, const string nome) {
   Usuario st_nome;
   
@@ -60,7 +69,15 @@ string Sistema::create_user (const string email, const string senha, const strin
   }
   return "Usuário criado\n";
 }
-  
+
+/*! 
+ * @brief Função que o usuário faz login no sistema. 
+ *
+ * @param email é uma string onde está armazenado o email correspondente ao usuário.
+ * @param senha é uma string onde está armazenada a senha correspondente ao usuário.
+ *
+ * @return retorna se a senha ou usuário sé inválidos ou mostra quem fez login no sistema.
+ */
 string Sistema::login(const string email, const string senha) {
   
   int aux = 0;
@@ -82,6 +99,13 @@ string Sistema::login(const string email, const string senha) {
 
 }
 
+/*! 
+ * @brief Função que disconecta o usuário do sistema. 
+ *
+ * @param id é o número que corresponde a cada usuário, quando digitado aqui, faz logout do usuário.
+ *
+ * @return retorna se o usuário fi desconectado ou se ele nem se conectou.
+ */
 string Sistema::disconnect(int id) {
   Usuario avisoemail;
   string completar2("Desconectando usuário ");
@@ -109,6 +133,14 @@ string Sistema::disconnect(int id) {
   return "Não está conectado.";
 }
 
+/*! 
+ * @brief Função na qual cria um servidor. 
+ *
+ * @param id número que identifica cada usuário no sistema
+ * @param nome é uma string onde está armazenado o nome correspondente ao usuário.
+ *
+ * @return retorna se o servidor foi criado ou se o servidor já existe ou não retorna nada caso não possa criar.
+ */
 string Sistema::create_server(int id, const string nome) {
 
   Servidor nome_do_servidor(id, nome);
@@ -131,11 +163,21 @@ string Sistema::create_server(int id, const string nome) {
   }
   if(aux == 0 && id > 0){
     servidores.push_back(nome_do_servidor);
+    return "Servidor criado";
   }
 
-  return "Servidor criado";
+  return "";//mudei aqui
 }
 
+/*! 
+ * @brief Função na qual muda a descrição do servidor. 
+ *
+ * @param id número que identifica cada usuário no sistema.
+ * @param nome é uma string que corresponde ao nome do servidor.
+ * @param descricao string na qual está a descrição digitada pelo usuário
+ *
+ * @return retorna se a descrição do servidor foi modificada com sucesso ou retorna a mensagem que o usuário só pode modificar se ele for o dono.
+ */
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
 
   Servidor informacoes(id, nome);
@@ -159,12 +201,20 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
     }
   }   
 
-  completar5 += nome;
-  completar5 += completar6;
 
-  return completar5;
+
+  return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
 }
 
+/*! 
+ * @brief Função na qual seta código de convite para o servidor. 
+ *
+ * @param id número que identifica cada usuário no sistema.
+ * @param nome é uma string que corresponde ao nome do servidor.
+ * @param codigo é a string onde está o código de comvite do servidor
+ *
+ * @return retorna mensagem caso o código de convite foi modificado, ou removido, ou o usuário não pode modificar um código de um servidor que nçao é dono, ou se o servidor não existe
+ */
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
   Servidor convite(id, nome, codigo);
@@ -188,13 +238,20 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
           return completar7;
         }
       } else {
-          return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
+          return "Você não pode alterar o código de um servidor que não foi criado por você!";
       }
     }
   }
   return "Servidor não existe.";
 }
 
+/*! 
+ * @brief Função que lista todos os servidores corresponde ao usuário. 
+ *
+ * @param id número que identifica cada usuário no sistema.
+ *
+ * @return retorna nada pois a apresentação dos servidores se concentra na linha 264.
+ */
 string Sistema::list_servers(int id) {
 
   Servidor lista_servidores(id);
@@ -207,9 +264,17 @@ string Sistema::list_servers(int id) {
       cout << ((*itr).getNome_servidor()) << endl;
     }
   }
-  return "\n";
+  return "";
 }
 
+/*! 
+ * @brief Função que remove um servidor
+ *
+ * @param id número que identifica cada usuário no sistema.
+ * @param nome é uma string que corresponde ao nome do servidor.
+ *
+ * @return se o usuário for dono do servidor, remove o servidor, se o usuário não for dono do servidor e tentar remover, não remove, se o servidor não for encontrado, retorna que não foi encontrado o servidor.
+ */
 string Sistema::remove_server(int id, const string nome) {
 
   Servidor remover(id, nome);
@@ -239,8 +304,9 @@ string Sistema::remove_server(int id, const string nome) {
       return completar11;
     }
   }
-
-  return "remove_server NÃO IMPLEMENTADO";
+  completar13 += nome;
+  completar13 += completar14;
+  return completar13;
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
