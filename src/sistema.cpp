@@ -40,10 +40,10 @@ string Sistema::create_user (const string email, const string senha, const strin
 
     usuarios.push_back(st_nome);
     email_validos.push_back(st_nome.email);
-    cout << "\nTESNTANDO O PRIMEIO USUARIO SENDO CRIADO\n";
-    cout << "\ntamanho dentro da func: " << tam << endl;
+    /*cout << "\nTESNTANDO O PRIMEIO USUARIO SENDO CRIADO\n";
+    cout << "\ntamanho dentro da func: " << tam << endl;*/
     tam = usuarios.size();
-    return "\nUsuário criado!\n";
+    return "\nUsuário criado\n";
 
   } else if (tam >= 1){
     
@@ -194,14 +194,11 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
         completar3 += (*itr).getNome_servidor();
         completar3 += completar4;
         return completar3;
-      }
-      else{
+      }else{
         return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
       }
     }
   }   
-
-
 
   return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
 }
@@ -257,7 +254,7 @@ string Sistema::list_servers(int id) {
   Servidor lista_servidores(id);
   string completar10("\n");
 
-  cout << "SERVIDORES:";
+  //cout << "SERVIDORES:";
   cout << endl;
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
     if((*itr).getID2() == id){

@@ -1,0 +1,3 @@
+/home/silvia/Downloads/trabalho-2-silviafds/build/CMakeFiles/rebuild_cache.dir
+/home/silvia/Downloads/trabalho-2-silviafds/build/CMakeFiles/edit_cache.dir
+/home/silvia/Downloads/trabalho-2-silviafds/build/CMakeFiles/concordo.dir
