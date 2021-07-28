@@ -40,8 +40,6 @@ string Sistema::create_user (const string email, const string senha, const strin
 
     usuarios.push_back(st_nome);
     email_validos.push_back(st_nome.email);
-    /*cout << "\nTESNTANDO O PRIMEIO USUARIO SENDO CRIADO\n";
-    cout << "\ntamanho dentro da func: " << tam << endl;*/
     tam = usuarios.size();
     return "\nUsuário criado\n";
 
@@ -166,7 +164,7 @@ string Sistema::create_server(int id, const string nome) {
     return "Servidor criado";
   }
 
-  return "";//mudei aqui
+  return "";
 }
 
 /*! 
@@ -280,7 +278,7 @@ string Sistema::remove_server(int id, const string nome) {
   string completar12("' .");
   string completar13("Servidor '");
   string completar14("' não encontrado.");
-  string completar15("' removido");
+  string completar15("' removido.");
 
   for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
     if(((*ptr).getID()) == id){
@@ -300,7 +298,7 @@ string Sistema::remove_server(int id, const string nome) {
       completar11 += completar12;
       return completar11;
     }
-  }
+  } 
   completar13 += nome;
   completar13 += completar14;
   return completar13;

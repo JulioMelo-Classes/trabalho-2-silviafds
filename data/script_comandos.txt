@@ -52,3 +52,35 @@ enter-server 0 servidor-sinistro
 list-participants 0
 quit
 create-user naodeveprocessar@imd.ufrn.br naodevechegaraqui Não deve chegar aqui
+
+
+create-user brenda@gmail.com senha12 Brenda Dantas
+login brenda@gmail.com senha12 
+create-user silvia@gmail.com 12senha Silvia Goes 
+login silvia@gmail.com 123senha
+login silvia@gmail.com 12senha
+create-user julio@gmail.com senha321 Julio Paulino
+login julio@gmail.com senha321
+create-server 1 psicologa
+set-server-desc 1 psicologa "Não gostei da minha nova psicóloga."
+create-server 1 acai
+create-server 2 energetico
+set-server-desc 2 energetico "Redbull te dá asas."
+create-server 2 rapadura
+create-server 3 professor
+set-server-desc 3 professor "Professor do imd."
+create-server 3 professorimd
+list-servers 1
+list-servers 2 
+list-servers 3
+remove-server 1 psi
+remove-server 2 psicologa
+remove-server 1 psicologa
+
+
+
+
+
+
+
+
