@@ -42,6 +42,10 @@ class Servidor{
 			codigoConvite = codigo;
 		}
 
+		void setCodigoConvite(string code){
+			codigoConvite = code;
+		}
+
 		string getCodigo(){
 			return codigoConvite;
 		}

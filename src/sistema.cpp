@@ -144,24 +144,25 @@ string Sistema::create_server(int id, const string nome) {
   Servidor nome_do_servidor(id, nome);
   int tam = servidores.size();
   int aux = 0;
-  
-  /*cout << "ID que está criando: " << nome_do_servidor.getID() << endl;
-  cout << "Nome do servidor: " << nome_do_servidor.getNome_servidor() << endl;*/
 
-  if(tam == 0 && id > 0){
+  if(usuariosLogados.find(id) != usuariosLogados.end()){ //verifica se o usuário está logado.
+    if(tam == 0 && id > 0){
     servidores.push_back(nome_do_servidor);
-    return "Servidor criado";
-  } else {
-    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){  
-      if(nome.compare((*itr).getNome_servidor()) == 0){
+    return "Servidor criado.";
+    } else {
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+        if(nome == (*itr).getNome_servidor()){
         aux++;
         return "Servidor com esse nome já existe.";
+        }
       }
     }
-  }
-  if(aux == 0 && id > 0){
+    if(aux == 0 && id > 0){
     servidores.push_back(nome_do_servidor);
-    return "Servidor criado";
+    return "Servidor criado.";
+    }
+  } else {
+    return "Você não está logado(a), portanto não pode criar servidores.";
   }
 
   return "";
@@ -180,25 +181,24 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
 
   Servidor informacoes(id, nome);
   Servidor verificar_desc(descricao);
-  string completar3("Descrição do servidor '");
-  string completar4("' modificada!");
-  string completar5("Servidor '");
-  string completar6("' não existe!");
 
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if((*itr).getNome_servidor() == nome){
-      if((*itr).getID() == id){
-        verificar_desc.getDescricao();
-        completar3 += (*itr).getNome_servidor();
-        completar3 += completar4;
-        return completar3;
-      }else{
-        return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      if((*itr).getNome_servidor() == nome){
+        if((*itr).getID() == id){
+          verificar_desc.getDescricao();
+          return "Descrição do servidor '" + nome + "' modificada!";
+        }else{
+          return "Você não pode alterar a descrição de um servidor que não foi criado por você.";
+        }
+      } else {
+        return "Servidor '" + nome + "' não existe.";
       }
-    }
-  }   
-
-  return "Você não pode alterar a descrição de um servidor que não foi criado por você!";
+    }   
+  } else {
+    return "Você não está logado(a), portanto não pode alterar nenhuma descrição.";
+  }
+  return "";
 }
 
 /*! 
@@ -213,29 +213,26 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
   Servidor convite(id, nome, codigo);
-  string completar7("Código de convite do servidor '");
-  string completar8("' modificado!");
-  string completar9("' removido!");
 
   int tam = codigo.length();
 
-  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-    if((*ptr).getNome_servidor() == nome){
-      if((*ptr).getID() == id){
-        if (tam == 0){
-          completar7 += nome;
-          completar7 += completar9;
-          return completar7;
-        } else {        
-          convite.getCodigo();
-          completar7 += nome;
-          completar7 += completar8;
-          return completar7;
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+      if((*ptr).getNome_servidor() == nome){
+        if((*ptr).getID() == id){
+          if (tam == 0){
+            return "Código de convite do servidor '" + nome + "' removido.";
+          } else {        
+            convite.setCodigoConvite(codigo); // OK
+            return "Código de convite do servidor '" + nome + "' modificado.";
+          }
+        } else {
+            return "Você não pode alterar o código de um servidor que não foi criado por você!";
         }
-      } else {
-          return "Você não pode alterar o código de um servidor que não foi criado por você!";
       }
     }
+  } else {
+    return "Você não está logado(a), portanto não pode modificar códigos de convite.";
   }
   return "Servidor não existe.";
 }
@@ -249,15 +246,12 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
  */
 string Sistema::list_servers(int id) {
 
-  Servidor lista_servidores(id);
-  string completar10("\n");
+  //Servidor lista_servidores(id);
+  //string completar10("\n");
 
-  //cout << "SERVIDORES:";
   cout << endl;
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if((*itr).getID2() == id){
-      cout << ((*itr).getNome_servidor()) << endl;
-    }
+    cout << ((*itr).getNome_servidor()) << endl;
   }
   return "";
 }
@@ -274,34 +268,32 @@ string Sistema::remove_server(int id, const string nome) {
 
   Servidor remover(id, nome);
   string aux_nome;
-  string completar11("Você não é dono(a) do servidor '");
-  string completar12("' .");
-  string completar13("Servidor '");
-  string completar14("' não encontrado.");
-  string completar15("' removido.");
 
-  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+      cout << "entrei no for" << endl;
+      if(nome == (*ptr).getNome_servidor() == 0){
+        cout << "entrei em nome" << endl;
+        if(id == (*ptr).getID() == 0){
+          cout << "entrei em id" << endl;
+          servidores.erase(ptr);
+        }
+      } 
+    }
+  }
+
+
+  /*for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
     if(((*ptr).getID()) == id){
       if(((*ptr).getNome_servidor() == nome)){
         aux_nome = ((*ptr).getNome_servidor());
         servidores.erase(ptr);
-        completar13 += aux_nome;
-        completar13 += completar15;
-        return completar13;
-      } else {
-        completar13 += nome;
-        completar13 += completar14;
-        return completar13;
       }
-    } else {
-      completar11 += nome;
-      completar11 += completar12;
-      return completar11;
     }
-  } 
-  completar13 += nome;
-  completar13 += completar14;
-  return completar13;
+  }*/ 
+
+  return "";
+  //return "remove_server NÃO IMPLEMENTADO";
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {

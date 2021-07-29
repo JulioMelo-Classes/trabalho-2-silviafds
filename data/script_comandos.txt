@@ -62,6 +62,31 @@ login silvia@gmail.com 12senha
 create-user julio@gmail.com senha321 Julio Paulino
 login julio@gmail.com senha321
 create-server 1 psicologa
+create-server 2 psicologa
+create-server 2 acai
+create-server 3 professor
+create-server 1 ovomaltine
+create-server 2 rapadura
+list-servers 0
+set-server-desc 2 impar "Testando."
+set-server-desc 2 psicologa "Testando."
+set-server-invite-code 2 acai 5446
+set-server-invite-code 2 acai
+remove-server 2 acai
+list-servers 0 
+
+set-server-desc 2 impar "Testando."
+set-server-desc 2 psicologa "Testando."
+set-server-invite-code 2 acai 5446
+disconnect 2
+set-server-invite-code 2 acai
+create-server 1 acai
+create-server 3 profe
+create-server 2 profe
+create-server 3 profimd
+create-server 1 profimd
+
+
 set-server-desc 1 psicologa "Não gostei da minha nova psicóloga."
 create-server 1 acai
 create-server 2 energetico
@@ -70,6 +95,7 @@ create-server 2 rapadura
 create-server 3 professor
 set-server-desc 3 professor "Professor do imd."
 create-server 3 professorimd
+set-server-invite-code 1 acai 
 list-servers 1
 list-servers 2 
 list-servers 3
