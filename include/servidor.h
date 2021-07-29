@@ -5,6 +5,10 @@
 #include "canaltexto.h"
 using namespace std;
 
+/*
+CP1 classe servidor 70%
+tirei pontos pois vcs não dividiram em .cpp e .h
+*/
 class Servidor{
 	private:
 		int usuarioDonold;//id do usuário que criou o servidor

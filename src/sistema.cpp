@@ -24,6 +24,9 @@ string Sistema::quit() {
  *
  * @return retorna a mensagem que o usuário foi criado ou que já existe (a depender da situação).
  */
+ /*
+ A1.2 ok
+ */
 string Sistema::create_user (const string email, const string senha, const string nome) {
   Usuario st_nome;
   
@@ -32,6 +35,7 @@ string Sistema::create_user (const string email, const string senha, const strin
   int tam, tam_email, aux = 0;
   tam = usuarios.size();
 
+  //realmente não precisa tratar esse usuário diferente... 
   if(tam == 0){//ele é o 1º usuario a ser criado
     st_nome.id = 1;
     st_nome.email = email;
@@ -78,6 +82,10 @@ string Sistema::create_user (const string email, const string senha, const strin
  *
  * @return retorna se a senha ou usuário sé inválidos ou mostra quem fez login no sistema.
  */
+
+ /*
+ A1.3 ok
+ */
 string Sistema::login(const string email, const string senha) {
   
   int aux = 0;
@@ -106,6 +114,9 @@ string Sistema::login(const string email, const string senha) {
  *
  * @return retorna se o usuário fi desconectado ou se ele nem se conectou.
  */
+ /*
+ A2.1 ok
+ */
 string Sistema::disconnect(int id) {
   Usuario avisoemail;
   string completar2("Desconectando usuário ");
@@ -115,6 +126,7 @@ string Sistema::disconnect(int id) {
                             //se o map for 0 é porque ninguém fez login
                             //se o map for maior que 0 é pq pessoas fizeram login
 
+  //não é necessário, fazendo o bloco do else toda vez vc ainda tem o mesmo resultado!
   if(x == 0){//quando não existe pessoas logadas
     return "Não está conectado.";
   }else{//existem pessoas logadas
@@ -140,6 +152,10 @@ string Sistema::disconnect(int id) {
  * @param nome é uma string onde está armazenado o nome correspondente ao usuário.
  *
  * @return retorna se o servidor foi criado ou se o servidor já existe ou não retorna nada caso não possa criar.
+ */
+ /*
+ A2.2 70%
+ - Faltou testar se o usuário está logado
  */
 string Sistema::create_server(int id, const string nome) {
 
@@ -178,6 +194,10 @@ string Sistema::create_server(int id, const string nome) {
  *
  * @return retorna se a descrição do servidor foi modificada com sucesso ou retorna a mensagem que o usuário só pode modificar se ele for o dono.
  */
+ /*
+ A2.3 70%
+ - Faltou tester se o usuário está logado
+ */
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
 
   Servidor informacoes(id, nome);
@@ -211,6 +231,10 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
  * @param codigo é a string onde está o código de comvite do servidor
  *
  * @return retorna mensagem caso o código de convite foi modificado, ou removido, ou o usuário não pode modificar um código de um servidor que nçao é dono, ou se o servidor não existe
+ */
+ /*
+ A2.4 70%
+ - Faltou testar se está logado
  */
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
@@ -249,6 +273,11 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
  *
  * @return retorna nada pois a apresentação dos servidores se concentra na linha 264.
  */
+ /*
+ A2.5 ok
+ - vc não verificou se o usuário está logado, mas nesse caso não é mesmo necessário
+ - Veja que esse comando deve listar todos os servidores do sistema e não apenas os que o usuário é dono!
+ */
 string Sistema::list_servers(int id) {
 
   Servidor lista_servidores(id);
@@ -271,6 +300,12 @@ string Sistema::list_servers(int id) {
  * @param nome é uma string que corresponde ao nome do servidor.
  *
  * @return se o usuário for dono do servidor, remove o servidor, se o usuário não for dono do servidor e tentar remover, não remove, se o servidor não for encontrado, retorna que não foi encontrado o servidor.
+ */
+
+ /*
+ A2.6 70%
+ - Faltou verificar se o usuário está logado!
+ - Não vou tirar pontos por isso, mas faltou atualizar a tabela usuarios logados de acordo com a remoção do servidor
  */
 string Sistema::remove_server(int id, const string nome) {
 

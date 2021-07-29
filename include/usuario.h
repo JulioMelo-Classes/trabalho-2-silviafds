@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+/*
+CP1 classe usuário ok
+*/
 class Usuario{
 	public:
 		int id; //numero de cada usuario ao fazer o cadastro
