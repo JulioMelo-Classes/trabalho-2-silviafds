@@ -179,22 +179,22 @@ string Sistema::create_server(int id, const string nome) {
  */
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
 
-  Servidor informacoes(id, nome);
   Servidor verificar_desc(descricao);
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-      if((*itr).getNome_servidor() == nome){ // não está verificando o nome
-        if((*itr).getID() == id){
-          verificar_desc.getDescricao();
+      if(itr->getNome_servidor() == nome){ 
+        if(itr->getID() == id){
+          verificar_desc.setDescricao(descricao);
           return "Descrição do servidor '" + nome + "' modificada!";
         }else{
           return "Você não pode alterar a descrição de um servidor que não foi criado por você.";
         }
-      } else {
-        return "Servidor '" + nome + "' não existe.";
-      }
-    }   
+      } 
+    }  
+
+    return "Servidor '" + nome + "' não existe.";
+
   } else {
     return "Você não está logado(a), portanto não pode alterar nenhuma descrição.";
   }
@@ -212,6 +212,7 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
  */
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
+  //Servidor convite(codigo);
   Servidor convite(id, nome, codigo);
 
   int tam = codigo.length();
@@ -223,11 +224,12 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
           if (tam == 0){
             return "Código de convite do servidor '" + nome + "' removido.";
           } else {        
-            convite.setCodigoConvite(codigo); // OK
+            ptr->setCodigoConvite(codigo); // OK
+            cout << "Código de convite: "<< ptr->getCodigoConvite() << endl;
             return "Código de convite do servidor '" + nome + "' modificado.";
           }
         } else {
-            return "Você não pode alterar o código de um servidor que não foi criado por você!";
+            return "Você não pode alterar o código de um servidor que você não é o(a) dono(a).";
         }
       }
     }
@@ -263,108 +265,41 @@ string Sistema::list_servers(int id) {
  */
 string Sistema::remove_server(int id, const string nome) {
 
-  Servidor remover(id, nome);
-  string aux_nome;
-  int x = 0, y = 0, z = 0;
-
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if((*itr).getNome_servidor() == nome){
-      if((*itr).getID() == id){ 
-        servidores.erase(itr);
-        cout << "Servidor removido.";
-      }
-    }
-  }
-
-  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
       if(itr->getNome_servidor() == nome){
-        if(itr->getID() == id){
-          
-          servidores.erase(itr); // Tá dando BO
-          x += 1;
-        }else {
-          y += 1;
+        if(itr->getID() == id){ 
+          servidores.erase(itr);
+          return "Servidor removido.";
+        } else {
+          return "Você não é dono";
         }
-      } else {
-        z += 1;
       }
-    }
-  }
-
-  if(x == 1){
-    return "Servidor '" + nome + "' removido.";
-  } else if(y == 1) {
-    return "Você não é o(a) dono(a) do servidor '" + nome + "'.";
-  } else if (z >=1){
-    return "Servidor '" + nome + "' não encontrado.";
-  }*/
-
-
-
-  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
-    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-      if(itr->getNome_servidor() == nome){
-        if(itr->getID() == id){
-          cout << "VOU REMOVER" << endl;
-        }else {
-          cout << "Você não é dono(a) do servidor '" + nome + "'." << endl;
-        }
-      } else {
-        cout << "Servidor não encontrado." << endl;
-      }
-    }
-  }*/
-
-  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
-    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-      if ((*ptr).getNome_servidor() == nome){
-        //cout << "Teste" << endl;
-        return "Teste";
-      } else {
-        //cout << "Teste2" << endl;
-        return "Teste2";
-      }
-      /*if((*ptr).getNome_servidor() == nome){
-        cout << "entrei em nome" << endl;
-        cout << "achei o servidor " + nome << endl;
-      } else {
-        return "Servidor '" + nome + "' não encontrado.";
-      }
-    }
+    } 
+    return "Servidor não encontrado.";
   } else {
-    return "Você não está logado(a).";
-  }*/
-
-  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
-    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-      cout << "entrei no for" << endl;
-      if(nome == (*ptr).getNome_servidor() == 0){
-        cout << "entrei em nome" << endl;
-        if(id == (*ptr).getID() == 0){
-          cout << "entrei em id" << endl;
-          servidores.erase(ptr);
-        }
-      } 
-    }
-  }*/
-
-
-  /*for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-    if(((*ptr).getID()) == id){
-      if(((*ptr).getNome_servidor() == nome)){
-        aux_nome = ((*ptr).getNome_servidor());
-        servidores.erase(ptr);
-      }
-    }
-  }*/ 
+    return "Você não está logado.";
+  }
 
   return "";
-  //return "remove_server NÃO IMPLEMENTADO";
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
-  return "enter_server NÃO IMPLEMENTADO";
+
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if(itr->getNome_servidor() == nome){
+      if(itr->getID() == id){
+        return "Entrou no servidor com sucesso.";
+      } else if(itr->getCodigoConvite() != codigo && codigo == ""){
+          return "Servidor requer código de acesso.";
+      } else if(itr->getCodigoConvite() == codigo){
+          return "Entrou no servidor com sucesso.";
+        } else {
+          return "Código de acesso errado.";
+        }
+      }
+    }
+  return "";
 }
 
 string Sistema::leave_server(int id, const string nome) {

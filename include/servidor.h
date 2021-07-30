@@ -15,6 +15,7 @@ class Servidor{
 		vector<int> participantesIDs; //não pode ter get e set
 
 	public:
+
 		Servidor(int id, string nome_servidor){
 			usuarioDonold = id;
 			nome = nome_servidor;				
@@ -36,28 +37,22 @@ class Servidor{
 			return descricao;
 		}
 
+		void setDescricao( string desc){
+			descricao = desc;
+		}
+
 		Servidor(int id, string nome_server, string codigo){
 			usuarioDonold = id;
 			nome = nome_server;
 			codigoConvite = codigo;
 		}
 
-		void setCodigoConvite(string code){
-			codigoConvite = code;
-		}
-
-		string getCodigo(){
+		string getCodigoConvite(){
 			return codigoConvite;
 		}
 
-		/*Servidor(int id){
-			usuarioDonold = id;
+		void setCodigoConvite(string code){
+			codigoConvite = code;
 		}
-
-		int getID2(){
-			return usuarioDonold;
-		}*/
-
 };
-
 #endif

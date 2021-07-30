@@ -66,13 +66,80 @@ create-server 2 acai
 create-server 3 professor
 create-server 1 ovomaltine
 create-server 2 rapadura
+create-server 3 imd
 list-servers 1
 set-server-desc 2 acai "Testando."
+set-server-desc 2 fulaninho
 set-server-desc 3 professor "teste"
+set-server-desc 1 rapadura
+set-server-desc 3 imd "Instituto"
+disconnect 1
+set-server-desc 1 psicologa
 set-server-invite-code 2 acai 5446
 set-server-invite-code 2 acai
 remove-server 2 acai
+remove-server 2 pla
+remove-server 3 professor
+remove-server 3 fl
+remove-server 2 rapadura
+remove-server 1 acai
 list-servers 0 
+
+
+
+create-user brenda@gmail.com senha12 Brenda Dantas
+login brenda@gmail.com senha12 
+create-user silvia@gmail.com 12senha Silvia Goes 
+login silvia@gmail.com 123senha
+login silvia@gmail.com 12senha
+create-user julio@gmail.com senha321 Julio Paulino
+login julio@gmail.com senha321
+create-server 1 acai
+create-server 3 professor
+create-server 2 rapadura
+create-server 3 imd
+create-server 1 ovomaltine
+create-server 2 jaca
+set-server-invite-code 1 acai 19
+set-server-invite-code 3 professor
+set-server-invite-code 2 rapadura 66
+set-server-invite-code 3 imd 65
+set-server-invite-code 1 ovomaltine 47
+set-server-invite-code 2 jaca 34
+enter-server 2 acai 34 
+enter-server 3 rapadura
+enter-server 2 professor
+enter-server 2 acai 19
+enter-server 1 ovomaltine
+enter-server 3 jaca
+
+
+
+
+create-user brenda@gmail.com senha12 Brenda Dantas
+login brenda@gmail.com senha12 
+create-user silvia@gmail.com 12senha Silvia Goes 
+login silvia@gmail.com 123senha
+login silvia@gmail.com 12senha
+create-user julio@gmail.com senha321 Julio Paulino
+login julio@gmail.com senha321
+create-server 1 ovomaltine
+create-server 2 rapadura
+create-server 2 jaca
+create-server 3 professor
+create-server 1 acai
+list-servers 1
+remove-server 1 jaca
+remove-server 2 jaca
+remove-server 3 imd
+remove-server 1 acai
+disconnect 3
+remove-server 3 professor
+list-servers 1
+
+
+
+
 
 
 
