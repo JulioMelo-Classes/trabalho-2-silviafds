@@ -62,18 +62,43 @@ login silvia@gmail.com 12senha
 create-user julio@gmail.com senha321 Julio Paulino
 login julio@gmail.com senha321
 create-server 1 psicologa
-create-server 2 psicologa
 create-server 2 acai
 create-server 3 professor
 create-server 1 ovomaltine
 create-server 2 rapadura
-list-servers 0
-set-server-desc 2 impar "Testando."
-set-server-desc 2 psicologa "Testando."
+list-servers 1
+set-server-desc 2 acai "Testando."
+set-server-desc 3 professor "teste"
 set-server-invite-code 2 acai 5446
 set-server-invite-code 2 acai
 remove-server 2 acai
 list-servers 0 
+
+
+
+create-user brenda@gmail.com senha12 Brenda Dantas
+login brenda@gmail.com senha12 
+create-user silvia@gmail.com 12senha Silvia Goes 
+login silvia@gmail.com 123senha
+login silvia@gmail.com 12senha
+create-user julio@gmail.com senha321 Julio Paulino
+login julio@gmail.com senha321
+create-server 1 psicologa
+create-server 2 acai
+create-server 3 professor
+create-server 1 ovomaltine
+create-server 2 rapadura
+list-servers 1
+set-server-invite-code 2 fulano 5446
+set-server-invite-code 2 acai
+remove-server 3 professor
+remove-server 2 acai
+remove-server 1 fj
+remove-server 3 professor
+remove-server 1 ovomaltine
+list-servers 1
+
+
 
 set-server-desc 2 impar "Testando."
 set-server-desc 2 psicologa "Testando."
