@@ -15,6 +15,22 @@ class Servidor{
 		vector<int> participantesIDs; //não pode ter get e set
 
 	public:
+		int getID();
+		void setID(int id);
+		string getNome_servidor();
+		void setNome_servidor(string nome_servidor);
+		string getDescricao();
+		void setDescricao(string descricao_servidor);
+		string getCodigoConvite();
+		void setCodigoConvite(string codigo_convite);
+		void adicionarParticipantes(int id);
+};
+
+/*public:
+
+		int adicionarParticipantes(int id){
+			participantesIDs.push_back(id);
+		}
 
 		Servidor(int id, string nome_servidor){
 			usuarioDonold = id;
@@ -45,6 +61,7 @@ class Servidor{
 			usuarioDonold = id;
 			nome = nome_server;
 			codigoConvite = codigo;
+			participantesIDs.push_back(id);
 		}
 
 		string getCodigoConvite(){
@@ -53,6 +70,7 @@ class Servidor{
 
 		void setCodigoConvite(string code){
 			codigoConvite = code;
-		}
-};
+		}*/
+
+
 #endif

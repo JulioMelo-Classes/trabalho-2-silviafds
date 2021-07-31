@@ -1,5 +1,6 @@
 #include "usuario.h"
 #include "sistema.h"
+#include "servidor.h"
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -29,7 +30,7 @@ string Sistema::create_user (const string email, const string senha, const strin
   
   st_nome.email = email;
   
-  int tam, tam_email, aux = 0;
+  int tam, aux = 0;
   tam = usuarios.size();
 
   if(tam == 0){//ele é o 1º usuario a ser criado
@@ -45,7 +46,7 @@ string Sistema::create_user (const string email, const string senha, const strin
 
   } else if (tam >= 1){
     
-    for(int i = 0; i < usuarios.size(); i++){//descobre se o usuário existe
+    for(int i = 0; i < tam; i++){//descobre se o usuário existe
       if( email_validos[i] == st_nome.email ){
         aux++;
       }
@@ -141,13 +142,15 @@ string Sistema::disconnect(int id) {
  */
 string Sistema::create_server(int id, const string nome) {
 
-  Servidor nome_do_servidor(id, nome);
+  Servidor proprio_servidor;
+  proprio_servidor.setNome_servidor(nome);
+  proprio_servidor.setID(id);
   int tam = servidores.size();
   int aux = 0;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){ //verifica se o usuário está logado.
     if(tam == 0 && id > 0){
-    servidores.push_back(nome_do_servidor);
+    servidores.push_back(proprio_servidor);
     return "Servidor criado.";
     } else {
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
@@ -158,7 +161,7 @@ string Sistema::create_server(int id, const string nome) {
       }
     }
     if(aux == 0 && id > 0){
-    servidores.push_back(nome_do_servidor);
+    servidores.push_back(proprio_servidor);
     return "Servidor criado.";
     }
   } else {
@@ -179,13 +182,15 @@ string Sistema::create_server(int id, const string nome) {
  */
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
 
-  Servidor verificar_desc(descricao);
+  Servidor verificar_descricao;
+  verificar_descricao.setDescricao(descricao);
+  //Servidor verificar_desc(descricao);
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
       if(itr->getNome_servidor() == nome){ 
         if(itr->getID() == id){
-          verificar_desc.setDescricao(descricao);
+          verificar_descricao.setDescricao(descricao);
           return "Descrição do servidor '" + nome + "' modificada!";
         }else{
           return "Você não pode alterar a descrição de um servidor que não foi criado por você.";
@@ -212,9 +217,10 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
  */
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
+  Servidor codigo_de_convite;
+  codigo_de_convite.setCodigoConvite(codigo);
   //Servidor convite(codigo);
-  Servidor convite(id, nome, codigo);
-
+  //Servidor convite(id, nome, codigo);
   int tam = codigo.length();
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
@@ -285,7 +291,7 @@ string Sistema::remove_server(int id, const string nome) {
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
-
+  
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
     if(itr->getNome_servidor() == nome){
       if(itr->getID() == id){
@@ -293,6 +299,7 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
       } else if(itr->getCodigoConvite() != codigo && codigo == ""){
           return "Servidor requer código de acesso.";
       } else if(itr->getCodigoConvite() == codigo){
+          itr->adicionarParticipantes(id);
           return "Entrou no servidor com sucesso.";
         } else {
           return "Código de acesso errado.";
@@ -303,6 +310,9 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 }
 
 string Sistema::leave_server(int id, const string nome) {
+
+
+
   return "leave_server NÃO IMPLEMENTADO";
 }
 

@@ -10,6 +10,7 @@ include_directories( include )
 add_executable( concordo
                 src/concordo.cpp
                 src/sistema.cpp 
-								src/executor.cpp )
+								src/executor.cpp 
+                src/servidor.cpp)
 
 # The end
