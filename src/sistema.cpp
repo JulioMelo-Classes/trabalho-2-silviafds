@@ -292,14 +292,17 @@ string Sistema::remove_server(int id, const string nome) {
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
   
+  Servidor preencherParticipantes;
+
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
     if(itr->getNome_servidor() == nome){
       if(itr->getID() == id){
+        //itr->adicionarParticipantes(id);
         return "Entrou no servidor com sucesso.";
       } else if(itr->getCodigoConvite() != codigo && codigo == ""){
           return "Servidor requer código de acesso.";
       } else if(itr->getCodigoConvite() == codigo){
-          itr->adicionarParticipantes(id);
+          preencherParticipantes.adicionarParticipantes(id);
           return "Entrou no servidor com sucesso.";
         } else {
           return "Código de acesso errado.";
@@ -311,7 +314,8 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 
 string Sistema::leave_server(int id, const string nome) {
 
-
+  Servidor teste;
+  teste.testarParticipantes(id);
 
   return "leave_server NÃO IMPLEMENTADO";
 }

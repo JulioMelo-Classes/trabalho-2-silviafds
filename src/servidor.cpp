@@ -1,5 +1,6 @@
+#include <iostream>
 #include "servidor.h"
-
+using namespace std;
 
 int Servidor::getID(){
     return usuarioDonold;
@@ -35,4 +36,17 @@ void Servidor::setCodigoConvite(string codigo_convite){
 
 void Servidor::adicionarParticipantes(int id){
     participantesIDs.push_back(id);
+}
+
+void Servidor::testarParticipantes(int id){
+    cout << "HEY" << endl;
+    int tam = participantesIDs.size();
+    cout << "Tamanho de participantes: " << tam << endl;
+    /*for (int i = 0; i < 4; i++) {
+        cout << "HELLO";
+    }*/
+    /*for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
+        cout << "HELLO" << endl;
+        //cout << "Participantes: " << (*itr) << endl;
+    }*/
 }
