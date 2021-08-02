@@ -112,7 +112,6 @@ enter-server 2 professor
 enter-server 1 professor
 enter-server 2 acai 19
 enter-server 1 ovomaltine
-enter-server 2 ovomaltine 47
 enter-server 3 ovomaltine 47
 enter-server 3 jaca
 leave-server 1 ovomaltine

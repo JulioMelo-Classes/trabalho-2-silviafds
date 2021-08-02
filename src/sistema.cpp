@@ -292,30 +292,37 @@ string Sistema::remove_server(int id, const string nome) {
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
+
   
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if(itr->getNome_servidor() == nome){
-      if(itr->getID() == id){
-        itr->adicionarParticipantes(id);
-        itr->testarParticipantes();
-        return "Entrou no servidor com sucesso.";
-      } else if(itr->getCodigoConvite() != codigo && codigo == ""){
-          return "Servidor requer código de acesso.";
-      } else if(itr->getCodigoConvite() == codigo){
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      if(itr->getNome_servidor() == nome){
+        if(itr->getID() == id){
           itr->adicionarParticipantes(id);
           itr->testarParticipantes();
+          usuariosLogados.insert({id, {nome, " "}});
+          for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+            cout << "LOGADOS: " << itr->first << endl;
+          }
           return "Entrou no servidor com sucesso.";
-        } else {
-          return "Código de acesso errado.";
-        }
+        } else if(itr->getCodigoConvite() != codigo && codigo == ""){
+            return "Servidor requer código de acesso.";
+        } else if(itr->getCodigoConvite() == codigo){
+            itr->adicionarParticipantes(id);
+            itr->testarParticipantes();
+            return "Entrou no servidor com sucesso.";
+          } else {
+            return "Código de acesso errado.";
+          }
       }
     }
+  }
   return "";
 }
 
 string Sistema::leave_server(int id, const string nome) {
 
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+  /*for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
     if(itr->getNome_servidor() == nome){
       if(itr->getID() == id){
         //cout << "ID excluído" << endl;
@@ -326,7 +333,7 @@ string Sistema::leave_server(int id, const string nome) {
         
       }
     }    
-  }
+  }*/
 
   return "";
 }
