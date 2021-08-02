@@ -24,54 +24,8 @@ class Servidor{
 		string getCodigoConvite();
 		void setCodigoConvite(string codigo_convite);
 		void adicionarParticipantes(int id);
-		void testarParticipantes(int id);
+		void testarParticipantes();
+		void excluirParticipante(int id);
 };
-
-/*public:
-
-		int adicionarParticipantes(int id){
-			participantesIDs.push_back(id);
-		}
-
-		Servidor(int id, string nome_servidor){
-			usuarioDonold = id;
-			nome = nome_servidor;				
-		}
-
-		int getID(){
-			return usuarioDonold;
-		}
-
-		string getNome_servidor(){
-			return nome;
-		}
-		
-		Servidor(string desc){
-			descricao = desc;
-		}
-
-		string getDescricao(){
-			return descricao;
-		}
-
-		void setDescricao( string desc){
-			descricao = desc;
-		}
-
-		Servidor(int id, string nome_server, string codigo){
-			usuarioDonold = id;
-			nome = nome_server;
-			codigoConvite = codigo;
-			participantesIDs.push_back(id);
-		}
-
-		string getCodigoConvite(){
-			return codigoConvite;
-		}
-
-		void setCodigoConvite(string code){
-			codigoConvite = code;
-		}*/
-
 
 #endif

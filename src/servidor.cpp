@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "servidor.h"
 using namespace std;
 
@@ -38,15 +39,20 @@ void Servidor::adicionarParticipantes(int id){
     participantesIDs.push_back(id);
 }
 
-void Servidor::testarParticipantes(int id){
-    cout << "HEY" << endl;
+void Servidor::excluirParticipante(int id){
+
+    int cont = 0;
+
+    for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
+        if((*itr) == id){
+            participantesIDs.erase(participantesIDs.begin()+cont);
+            break;
+        }
+        cont += 1;            
+    }
+}
+
+void Servidor::testarParticipantes(){
     int tam = participantesIDs.size();
     cout << "Tamanho de participantes: " << tam << endl;
-    /*for (int i = 0; i < 4; i++) {
-        cout << "HELLO";
-    }*/
-    /*for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
-        cout << "HELLO" << endl;
-        //cout << "Participantes: " << (*itr) << endl;
-    }*/
 }

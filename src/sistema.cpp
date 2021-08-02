@@ -25,6 +25,7 @@ string Sistema::quit() {
  *
  * @return retorna a mensagem que o usuário foi criado ou que já existe (a depender da situação).
  */
+
 string Sistema::create_user (const string email, const string senha, const string nome) {
   Usuario st_nome;
   
@@ -292,17 +293,17 @@ string Sistema::remove_server(int id, const string nome) {
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
   
-  Servidor preencherParticipantes;
-
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
     if(itr->getNome_servidor() == nome){
       if(itr->getID() == id){
-        //itr->adicionarParticipantes(id);
+        itr->adicionarParticipantes(id);
+        itr->testarParticipantes();
         return "Entrou no servidor com sucesso.";
       } else if(itr->getCodigoConvite() != codigo && codigo == ""){
           return "Servidor requer código de acesso.";
       } else if(itr->getCodigoConvite() == codigo){
-          preencherParticipantes.adicionarParticipantes(id);
+          itr->adicionarParticipantes(id);
+          itr->testarParticipantes();
           return "Entrou no servidor com sucesso.";
         } else {
           return "Código de acesso errado.";
@@ -314,10 +315,20 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 
 string Sistema::leave_server(int id, const string nome) {
 
-  Servidor teste;
-  teste.testarParticipantes(id);
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if(itr->getNome_servidor() == nome){
+      if(itr->getID() == id){
+        //cout << "ID excluído" << endl;
+        itr->excluirParticipante(id);  
+        itr->testarParticipantes();   
+        
+        return "ID excluído";
+        
+      }
+    }    
+  }
 
-  return "leave_server NÃO IMPLEMENTADO";
+  return "";
 }
 
 string Sistema::list_participants(int id) {
