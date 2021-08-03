@@ -331,13 +331,13 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 string Sistema::leave_server(int id, const string nome) {
 
   std::map< int, std::pair<std::string, std::string> >::iterator iterator2_nome;
-  //int aux = 0;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     //cout << "TO LOGADA" << endl;
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
       //cout << "ENTREI NO FOR" << endl;
       if(itr->getNome_servidor() == nome){
+        if(itr->verificarParticipante(id)){
           //cout << "ENTREI EM NOME" << endl;
           itr->excluirParticipante(id); 
           iterator2_nome = usuariosLogados.find(id);
@@ -345,16 +345,14 @@ string Sistema::leave_server(int id, const string nome) {
           itr->testarParticipantes(nome);
           cout << "SAINDO" << endl;
           //return "Saindo do servidor '" + nome + "'.";
-        
+        } else{
+          return "Você não está em qualquer servidor.";
+        }        
       }
     }
   } else{
     cout << "Você não está logado.";
   }
-
-  /*if(aux > 0){
-    return "Você não está em qualquer servidor.";
-  }*/
 
   for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
     if(usuariosLogados.find(id) != usuariosLogados.end()){
@@ -367,6 +365,13 @@ string Sistema::leave_server(int id, const string nome) {
 }
 
 string Sistema::list_participants(int id) {
+
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
+      
+    }
+  }
+
   return "list_participants NÃO IMPLEMENTADO";
 }
 
