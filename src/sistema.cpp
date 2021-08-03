@@ -292,24 +292,25 @@ string Sistema::remove_server(int id, const string nome) {
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
-
   
+  std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
+
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
       if(itr->getNome_servidor() == nome){
         if(itr->getID() == id){
           itr->adicionarParticipantes(id);
-          itr->testarParticipantes();
-          usuariosLogados.insert({id, {nome, " "}});
-          for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
-            cout << "LOGADOS: " << itr->first << endl;
-          }
+          iterator_nome = usuariosLogados.find(id);
+          iterator_nome->second.first = itr->getNome_servidor();
+          itr->testarParticipantes(nome);
           return "Entrou no servidor com sucesso.";
         } else if(itr->getCodigoConvite() != codigo && codigo == ""){
             return "Servidor requer código de acesso.";
         } else if(itr->getCodigoConvite() == codigo){
             itr->adicionarParticipantes(id);
-            itr->testarParticipantes();
+            iterator_nome = usuariosLogados.find(id);
+            iterator_nome->second.first = itr->getNome_servidor();
+            itr->testarParticipantes(nome);
             return "Entrou no servidor com sucesso.";
           } else {
             return "Código de acesso errado.";
@@ -317,23 +318,50 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
       }
     }
   }
+
+  /*for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
+    if(usuariosLogados.find(id) != usuariosLogados.end()){
+      cout << "IDs: " << ptr->first;
+      cout << " Nomes: " << ptr->second.first << endl;
+    }
+  }*/
   return "";
 }
 
 string Sistema::leave_server(int id, const string nome) {
 
-  /*for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if(itr->getNome_servidor() == nome){
-      if(itr->getID() == id){
-        //cout << "ID excluído" << endl;
-        itr->excluirParticipante(id);  
-        itr->testarParticipantes();   
-        
-        return "ID excluído";
+  std::map< int, std::pair<std::string, std::string> >::iterator iterator2_nome;
+  //int aux = 0;
+
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    //cout << "TO LOGADA" << endl;
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      //cout << "ENTREI NO FOR" << endl;
+      if(itr->getNome_servidor() == nome){
+          //cout << "ENTREI EM NOME" << endl;
+          itr->excluirParticipante(id); 
+          iterator2_nome = usuariosLogados.find(id);
+          iterator2_nome->second.first = " "; 
+          itr->testarParticipantes(nome);
+          cout << "SAINDO" << endl;
+          //return "Saindo do servidor '" + nome + "'.";
         
       }
-    }    
+    }
+  } else{
+    cout << "Você não está logado.";
+  }
+
+  /*if(aux > 0){
+    return "Você não está em qualquer servidor.";
   }*/
+
+  for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
+    if(usuariosLogados.find(id) != usuariosLogados.end()){
+      cout << "IDs: " << ptr->first;
+      cout << " Nomes: " << ptr->second.first << endl;
+    }
+  }
 
   return "";
 }

@@ -24,7 +24,8 @@ class Servidor{
 		string getCodigoConvite();
 		void setCodigoConvite(string codigo_convite);
 		void adicionarParticipantes(int id);
-		void testarParticipantes();
+		void testarParticipantes(string name);
+		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
 };
 

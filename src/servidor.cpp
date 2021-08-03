@@ -52,7 +52,17 @@ void Servidor::excluirParticipante(int id){
     }
 }
 
-void Servidor::testarParticipantes(){
+void Servidor::testarParticipantes(string name){
     int tam = participantesIDs.size();
-    cout << "Tamanho de participantes: " << tam << endl;
+    cout << "Tamanho de participantes " << name << ": " << tam << endl;
+}
+
+bool Servidor::verificarParticipante(int id){
+    for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
+        if((*itr) == id){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
