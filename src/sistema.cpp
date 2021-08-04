@@ -293,9 +293,7 @@ string Sistema::remove_server(int id, const string nome) {
   return "";
 }
 
-string Sistema::enter_server(int id, const string nome, const string codigo) {
-  
-  
+string Sistema::enter_server(int id, const string nome, const string codigo) { 
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
@@ -321,6 +319,7 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
     }
   }
 
+  //FOR USADO PARA SABERMOS QUAL SERVIDOR O USUÁRIO ESTÁ VISUALIZANDO
   /*for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
     if(usuariosLogados.find(id) != usuariosLogados.end()){
       cout << "IDs: " << ptr->first;
@@ -332,22 +331,15 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 
 string Sistema::leave_server(int id, const string nome) {
 
-  std::map< int, std::pair<std::string, std::string> >::iterator iterator2_nome, teste;
-
-  //teste = iterator2_nome->second.first;
-
   if(usuariosLogados.find(id) != usuariosLogados.end()){
-    //cout << "TO LOGADA" << endl;
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-      //cout << "ENTREI NO FOR" << endl;
       if(itr->getNome_servidor() == nome){
         if(itr->verificarParticipante(id)){
-          //cout << "ENTREI EM NOME" << endl;
           itr->excluirParticipante(id); 
-          iterator2_nome = usuariosLogados.find(id);
-          iterator2_nome->second.first = " "; 
+          iterator_nome = usuariosLogados.find(id);
+          //iterator_nome->second.first = " "; 
           itr->testarParticipantes(nome);
-          cout << "SAINDO" << endl;
+          cout << "Saindo do servdior " + nome << endl;
           //return "Saindo do servidor '" + nome + "'.";
         } else{
           return "Você não está em qualquer servidor.";
@@ -358,6 +350,7 @@ string Sistema::leave_server(int id, const string nome) {
     cout << "Você não está logado.";
   }
 
+  //FOR USADO PARA SABERMOS QUAL SERVIDOR O USUÁRIO ESTÁ VISUALIZANDO
   for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
     if(usuariosLogados.find(id) != usuariosLogados.end()){
       cout << "IDs: " << ptr->first;
@@ -370,11 +363,29 @@ string Sistema::leave_server(int id, const string nome) {
 
 string Sistema::list_participants(int id) {
 
-  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
-    
+  string servidor_participantes;
+  //int oid;
+
+  for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+    if(itr->first == id){
+      servidor_participantes = itr->second.first;
+      //oid = itr->first;
+      cout << "NOME DO SERVIDOR LISTAR: " << servidor_participantes << endl;
+    }
   }
 
-  cout << "O ID: " << st_nome.id << endl;*/
+  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+    if(ptr->getNome_servidor() == servidor_participantes){
+      cout << "Tenho que retornar os participantes de: " << ptr->getNome_servidor() << endl;
+    } 
+  }
+
+
+  /*cout << endl;
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    cout << ((*itr).getNome_servidor()) << endl;
+  }
+  return "";*/
 
   return "list_participants NÃO IMPLEMENTADO";
 }

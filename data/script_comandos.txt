@@ -115,10 +115,14 @@ enter-server 3 ovomaltine 47
 enter-server 3 jaca 34
 enter-server 3 professor
 enter-server 2 ovomaltine 47
+enter-server 2 rapadura
 leave-server 1 professor
 leave-server 1 acai 
-leave-server 3 jaca
 leave-server 2 ovomaltine
+leave-server 3 jaca
+list-participants 1
+list-participants 3
+list-participants 2
 
 
 

@@ -24,10 +24,12 @@ class Servidor{
 		string getCodigoConvite();
 		void setCodigoConvite(string codigo_convite);
 		void adicionarParticipantes(int id);
-		void testarParticipantes(string name);
+		void testarParticipantes(string name); // método criado apenas para testes
 		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
-		//void percorrerParticipantes();
+		//void usuariosNoServidor(int id);
+		//int mostrarParticipantes(int id);
+
 };
 
 #endif
