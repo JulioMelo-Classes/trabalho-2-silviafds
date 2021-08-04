@@ -65,9 +65,9 @@ bool Servidor::verificarParticipante(int id){
     }
 }
 
-/*int Servidor::mostrarParticipantes(int id){
+void Servidor::mostrarParticipantes(){
     for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
-        //cout << (*itr) << endl;
-        return (*itr);
+        cout << (*itr) << endl;
+        testandoParticipantes.push_back(*itr);
     }
-}*/
+}

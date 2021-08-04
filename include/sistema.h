@@ -18,13 +18,13 @@ class Sistema {
 		std::map< int, std::pair<std::string, std::string> > usuariosLogados; //<! um vetor contendo os usuários que logaram no sistema		
 
 	public:
-
 		vector<int> id_usuario;
 		vector<string> email_validos;
 		std::vector<Usuario> validar_email;
 		std::vector<Usuario> comp_usu;
 		vector<Usuario>::iterator ptr;
 		vector<Usuario>::iterator ptx;
+
 		/*! Encerra o funcionamento do Concordo, o programa termina ao executar este comando.
 				@return uma string com a mensagem "Saindo.."
 		*/

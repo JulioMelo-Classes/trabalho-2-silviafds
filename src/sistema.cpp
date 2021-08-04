@@ -351,43 +351,58 @@ string Sistema::leave_server(int id, const string nome) {
   }
 
   //FOR USADO PARA SABERMOS QUAL SERVIDOR O USUÁRIO ESTÁ VISUALIZANDO
-  for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
+  /*for(auto ptr = usuariosLogados.begin(); ptr != usuariosLogados.end(); ptr++){
     if(usuariosLogados.find(id) != usuariosLogados.end()){
       cout << "IDs: " << ptr->first;
       cout << " Nomes: " << ptr->second.first << endl;
     }
-  }
+  }*/
 
   return "";
 }
 
 string Sistema::list_participants(int id) {
 
-  string servidor_participantes;
-  //int oid;
+  string servidor_visualizado;
 
   for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
     if(itr->first == id){
-      servidor_participantes = itr->second.first;
-      //oid = itr->first;
-      cout << "NOME DO SERVIDOR LISTAR: " << servidor_participantes << endl;
+      servidor_visualizado = itr->second.first;
+      cout << "SERVIDOR: " << servidor_visualizado << endl;
     }
   }
 
   for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-    if(ptr->getNome_servidor() == servidor_participantes){
-      cout << "Tenho que retornar os participantes de: " << ptr->getNome_servidor() << endl;
-    } 
+    if((*ptr).getNome_servidor() == servidor_visualizado){
+      ptr->mostrarParticipantes();
+      if(ptr->testandoParticipantes == st_nome.id){
+
+      }
+    }
   }
+
+
+  
+
+
+  // ENCONTRA OS SERVIDORES QUE CADA ID ENTROU
+  /*cout << endl;
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if(itr->getID() == id){
+      cout << ((*itr).getNome_servidor()) << endl;
+    }
+  }
+  return "";*/
+
 
 
   /*cout << endl;
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    cout << ((*itr).getNome_servidor()) << endl;
+    cout << mostrarParticipantes() << endl;
   }
   return "";*/
 
-  return "list_participants NÃO IMPLEMENTADO";
+  return "";
 }
 
 string Sistema::list_channels(int id) {

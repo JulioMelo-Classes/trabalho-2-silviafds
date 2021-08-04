@@ -15,6 +15,7 @@ class Servidor{
 		vector<int> participantesIDs; //não pode ter get e set
 
 	public:
+		vector<int> testandoParticipantes;
 		int getID();
 		void setID(int id);
 		string getNome_servidor();
@@ -28,7 +29,7 @@ class Servidor{
 		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
 		//void usuariosNoServidor(int id);
-		//int mostrarParticipantes(int id);
+		void mostrarParticipantes();
 
 };
 
