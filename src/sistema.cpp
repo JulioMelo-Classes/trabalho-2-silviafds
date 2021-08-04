@@ -26,9 +26,11 @@ string Sistema::quit() {
  * @return retorna a mensagem que o usuário foi criado ou que já existe (a depender da situação).
  */
 
+Usuario st_nome;
+std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
+
 string Sistema::create_user (const string email, const string senha, const string nome) {
-  Usuario st_nome;
-  
+    
   st_nome.email = email;
   
   int tam, aux = 0;
@@ -293,7 +295,7 @@ string Sistema::remove_server(int id, const string nome) {
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
   
-  std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
+  
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
@@ -330,7 +332,9 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
 
 string Sistema::leave_server(int id, const string nome) {
 
-  std::map< int, std::pair<std::string, std::string> >::iterator iterator2_nome;
+  std::map< int, std::pair<std::string, std::string> >::iterator iterator2_nome, teste;
+
+  //teste = iterator2_nome->second.first;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     //cout << "TO LOGADA" << endl;
@@ -348,7 +352,7 @@ string Sistema::leave_server(int id, const string nome) {
         } else{
           return "Você não está em qualquer servidor.";
         }        
-      }
+      } 
     }
   } else{
     cout << "Você não está logado.";
@@ -366,11 +370,11 @@ string Sistema::leave_server(int id, const string nome) {
 
 string Sistema::list_participants(int id) {
 
-  if(usuariosLogados.find(id) != usuariosLogados.end()){
-    for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
-      
-    }
+  /*if(usuariosLogados.find(id) != usuariosLogados.end()){
+    
   }
+
+  cout << "O ID: " << st_nome.id << endl;*/
 
   return "list_participants NÃO IMPLEMENTADO";
 }

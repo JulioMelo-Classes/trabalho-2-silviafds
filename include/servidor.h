@@ -27,6 +27,7 @@ class Servidor{
 		void testarParticipantes(string name);
 		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
+		//void percorrerParticipantes();
 };
 
 #endif

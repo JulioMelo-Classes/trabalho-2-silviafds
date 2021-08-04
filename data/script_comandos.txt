@@ -115,35 +115,10 @@ enter-server 3 ovomaltine 47
 enter-server 3 jaca 34
 enter-server 3 professor
 enter-server 2 ovomaltine 47
-leave-server 3 professor
+leave-server 1 professor
+leave-server 1 acai 
+leave-server 3 jaca
 leave-server 2 ovomaltine
-leave-server 1 ovomaltine
-
-
-
-
-
-create-user brenda@gmail.com senha12 Brenda Dantas
-login brenda@gmail.com senha12 
-create-user silvia@gmail.com 12senha Silvia Goes 
-login silvia@gmail.com 123senha
-login silvia@gmail.com 12senha
-create-user julio@gmail.com senha321 Julio Paulino
-login julio@gmail.com senha321
-create-server 1 ovomaltine
-create-server 2 rapadura
-create-server 2 jaca
-create-server 3 professor
-create-server 1 acai
-list-servers 1
-remove-server 1 jaca
-remove-server 2 jaca
-remove-server 3 imd
-remove-server 1 acai
-disconnect 3
-remove-server 3 professor
-list-servers 1
-
 
 
 
