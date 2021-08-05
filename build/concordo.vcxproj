@@ -313,6 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\sistema.cpp" />
     <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\executor.cpp" />
     <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\servidor.cpp" />
+    <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\canaltexto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\build\ZERO_CHECK.vcxproj">

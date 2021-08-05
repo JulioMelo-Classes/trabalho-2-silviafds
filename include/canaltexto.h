@@ -6,9 +6,13 @@
 using namespace std;
 
 class CanalTexto{
-	public:
+	private:
 		string nome;
 		vector<Mensagem> mensagens;
+
+	public:
+		string getNomeCanal();
+		void setNomeCanal(string nome_do_canal);
 };
 
 #endif

@@ -115,12 +115,15 @@ enter-server 3 ovomaltine 47
 enter-server 3 jaca 34
 enter-server 3 professor
 enter-server 2 ovomaltine 47
-enter-server 2 rapadura
+enter-server 2 professor 
 enter-server 1 rapadura 66
 enter-server 1 acai
 list-participants 3
-list-participants 2
-list-participants 1
+create-channel 3 casa
+create-channel 2 quintal
+list-channels 1
+list-channels 2 
+list-channels 3
 
 
 

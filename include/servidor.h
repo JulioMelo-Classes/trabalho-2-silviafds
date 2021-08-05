@@ -29,6 +29,8 @@ class Servidor{
 		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
 		void mostrarParticipantes(vector<Usuario>& usuarios);
+		bool verificarCanais(string nome_do_canal);
+		void mostrarCanais();
 
 
 };
