@@ -339,7 +339,7 @@ string Sistema::leave_server(int id, const string nome) {
           iterator_nome = usuariosLogados.find(id);
           //iterator_nome->second.first = " "; 
           itr->testarParticipantes(nome);
-          cout << "Saindo do servdior " + nome << endl;
+          cout << "Saindo do servidor " + nome << endl;
           //return "Saindo do servidor '" + nome + "'.";
         } else{
           return "Você não está em qualquer servidor.";
@@ -375,14 +375,13 @@ string Sistema::list_participants(int id) {
   for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
     if((*ptr).getNome_servidor() == servidor_visualizado){
       ptr->mostrarParticipantes();
-      if(ptr->testandoParticipantes == st_nome.id){
-
-      }
+      for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
+        cout << "Nome: " << itr->nome << endl;
+      }      
     }
   }
 
-
-  
+ 
 
 
   // ENCONTRA OS SERVIDORES QUE CADA ID ENTROU
