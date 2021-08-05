@@ -65,9 +65,12 @@ bool Servidor::verificarParticipante(int id){
     }
 }
 
-void Servidor::mostrarParticipantes(){
-    for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
-        cout << (*itr) << endl;
-        testandoParticipantes.push_back(*itr);
+void Servidor::mostrarParticipantes(vector<Usuario>& usuarios){
+    for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
+        for(auto ptr = participantesIDs.begin(); ptr != participantesIDs.end(); ptr++){
+            if(itr->id == (*ptr)){
+                cout << "Nome: " << itr->nome << endl;
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "canaltexto.h"
+#include "usuario.h"
 using namespace std;
 
 class Servidor{
@@ -15,7 +16,6 @@ class Servidor{
 		vector<int> participantesIDs; //não pode ter get e set
 
 	public:
-		vector<int> testandoParticipantes;
 		int getID();
 		void setID(int id);
 		string getNome_servidor();
@@ -28,8 +28,8 @@ class Servidor{
 		void testarParticipantes(string name); // método criado apenas para testes
 		bool verificarParticipante(int id);
 		void excluirParticipante(int id);
-		//void usuariosNoServidor(int id);
-		void mostrarParticipantes();
+		void mostrarParticipantes(vector<Usuario>& usuarios);
+
 
 };
 

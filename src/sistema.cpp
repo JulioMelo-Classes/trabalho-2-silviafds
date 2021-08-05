@@ -368,38 +368,16 @@ string Sistema::list_participants(int id) {
   for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
     if(itr->first == id){
       servidor_visualizado = itr->second.first;
-      cout << "SERVIDOR: " << servidor_visualizado << endl;
+      //cout << "SERVIDOR: " << servidor_visualizado << endl;
+      break;
     }
   }
 
   for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
     if((*ptr).getNome_servidor() == servidor_visualizado){
-      ptr->mostrarParticipantes();
-      for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
-        cout << "Nome: " << itr->nome << endl;
-      }      
+      ptr->mostrarParticipantes(usuarios);           
     }
   }
-
- 
-
-
-  // ENCONTRA OS SERVIDORES QUE CADA ID ENTROU
-  /*cout << endl;
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if(itr->getID() == id){
-      cout << ((*itr).getNome_servidor()) << endl;
-    }
-  }
-  return "";*/
-
-
-
-  /*cout << endl;
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    cout << mostrarParticipantes() << endl;
-  }
-  return "";*/
 
   return "";
 }
