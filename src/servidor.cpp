@@ -69,7 +69,7 @@ void Servidor::mostrarParticipantes(vector<Usuario>& usuarios){
     for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
         for(auto ptr = participantesIDs.begin(); ptr != participantesIDs.end(); ptr++){
             if(itr->id == (*ptr)){
-                cout << "Nome: " << itr->nome << endl;
+                cout << itr->nome << endl;
             }
         }
     }
