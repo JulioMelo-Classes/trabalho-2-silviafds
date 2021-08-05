@@ -365,31 +365,38 @@ string Sistema::list_participants(int id) {
 
   string servidor_visualizado;
 
-  for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
-    if(itr->first == id){
-      servidor_visualizado = itr->second.first;
-      //cout << "SERVIDOR: " << servidor_visualizado << endl;
-      break;
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto itr = usuariosLogados.begin(); itr != usuariosLogados.end(); itr++){
+      if(itr->first == id){
+        servidor_visualizado = itr->second.first;
+        break;
+      }
     }
-  }  
+
+    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+      if((*ptr).getNome_servidor() == servidor_visualizado){
+        ptr->mostrarParticipantes(usuarios);           
+      }
+    }
+  } else {
+    return "Você não está logado.";
+  }
 
   return "";
 }
 
 string Sistema::list_channels(int id) {
 
-  /*string canal_visualizado;
+  string canal_visualizado;
   string servidor_visualizado;
 
   auto itr2 = usuariosLogados.find(id);
   servidor_visualizado = itr2->second.first;
-  canal_visualizado = itr2->second.second;*/
+  canal_visualizado = itr2->second.second;
 
-  /*for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-    if(ptr->verificarParticipante(id)){
-      ptr->mostrarCanais();
-    }
-  }*/
+  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+    
+  }
 
 
   //cout << "NOME DO SERVIDOR: " << servidor_visualizado << endl;
