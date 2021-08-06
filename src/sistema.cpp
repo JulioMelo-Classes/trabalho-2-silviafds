@@ -387,22 +387,23 @@ string Sistema::list_participants(int id) {
 
 string Sistema::list_channels(int id) {
 
-  string canal_visualizado;
   string servidor_visualizado;
 
   auto itr2 = usuariosLogados.find(id);
   servidor_visualizado = itr2->second.first;
-  canal_visualizado = itr2->second.second;
 
-  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
-    
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+      if((*ptr).getNome_servidor() == servidor_visualizado){
+        cout << "Servidor: " << servidor_visualizado << endl; // feito para testes
+        ptr->mostrarCanais();
+      }
+    }
+  }else{
+    return "Você não está logado.";
   }
 
-
-  //cout << "NOME DO SERVIDOR: " << servidor_visualizado << endl;
-  //cout << "NOME DO CANAL: " << canal_visualizado << endl;
-
-  return "list_channels NÃO IMPLEMENTADO";
+  return "";
 }
 
 string Sistema::create_channel(int id, const string nome) {
@@ -431,7 +432,7 @@ string Sistema::create_channel(int id, const string nome) {
     } else {
       return "Canal de texto '" + nome + "' já existe.";
     }
-  }  
+  }
 
   return "";
 }
