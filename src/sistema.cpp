@@ -395,7 +395,7 @@ string Sistema::list_channels(int id) {
 
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
-        cout << "Servidor: " << servidor_visualizado << endl; // feito para testes
+        cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
         ptr->mostrarCanais();
       }
     }
@@ -428,8 +428,7 @@ string Sistema::create_channel(int id, const string nome) {
     });
 
     if(it != servidores.end()){ //se o iterator não for igual ao final, ele achou um servidor, do contrario, não achou
-      if(it->verificarCanais(nome)){
-        itr2->second.second = nome; 
+      if(it->criarCanais(nome)){
         return "Canal de texto '" + nome + "' criado.";
       } else {
         return "Canal de texto '" + nome + "' já existe.";
@@ -443,7 +442,26 @@ string Sistema::create_channel(int id, const string nome) {
 }
 
 string Sistema::enter_channel(int id, const string nome) {
-  return "enter_channel NÃO IMPLEMENTADO";
+
+  string canal, servidor_visualizado;
+
+  auto itr2 = usuariosLogados.find(id);
+  servidor_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
+  canal = itr2->second.second;
+
+  for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+    if((*ptr).getNome_servidor() == servidor_visualizado){
+      cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
+      //ptr->mostrarCanais();
+      canal = nome;
+    } 
+  }
+
+  cout << "NOME DO CANAL QUE VOCÊ ENTROU: " << canal << endl;
+  
+
+
+  return "";
 }
 
 string Sistema::leave_channel(int id) {

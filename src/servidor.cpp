@@ -76,7 +76,7 @@ void Servidor::mostrarParticipantes(vector<Usuario>& usuarios){
     }
 }
 
-bool Servidor::verificarCanais(string nome_do_canal){
+bool Servidor::criarCanais(string nome_do_canal){
 
     auto iter = find_if(canaisTexto.begin(), canaisTexto.end(), [nome_do_canal](CanalTexto objeto){
         if(objeto.getNomeCanal() == nome_do_canal){
@@ -86,8 +86,7 @@ bool Servidor::verificarCanais(string nome_do_canal){
         } });    
  
     if(iter != canaisTexto.end()){//encontrou um objeto já existente
-        return false;
-        
+        return false; 
     } else{        
         CanalTexto obj;
         obj.setNomeCanal(nome_do_canal);
@@ -99,6 +98,6 @@ bool Servidor::verificarCanais(string nome_do_canal){
 
 void Servidor::mostrarCanais(){
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
-        cout << "Canal: " << itr->getNomeCanal()<< endl; 
+        cout << itr->getNomeCanal()<< endl; 
     }
 }
