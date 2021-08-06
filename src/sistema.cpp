@@ -443,18 +443,17 @@ string Sistema::create_channel(int id, const string nome) {
 
 string Sistema::enter_channel(int id, const string nome) {
 
-  string canal, servidor_visualizado;
+  string servidor_visualizado;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     auto itr2 = usuariosLogados.find(id);
     servidor_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
-    canal = itr2->second.second;
 
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
         cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
         if(ptr->verificarCanais(nome)){
-          canal = nome;
+          itr2->second.second = nome;
           return "Entrou no canal '" + nome + "'.";
         } else{
           return "Canal '" + nome + "' não existe.";
@@ -468,7 +467,21 @@ string Sistema::enter_channel(int id, const string nome) {
 }
 
 string Sistema::leave_channel(int id) {
-  return "leave_channel NÃO IMPLEMENTADO";
+
+  string servidor_visualizado, canal;
+
+  auto iter = usuariosLogados.find(id);
+  servidor_visualizado = iter->second.first;
+  canal = iter->second.second;
+
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    if((*itr).getNome_servidor() == servidor_visualizado){
+      cout << "Servidor a verificar canal: " << servidor_visualizado << endl;
+      cout  << "Canal a sair: " << canal << endl;
+    }
+  }
+
+  return "";
 }
 
 string Sistema::send_message(int id, const string mensagem) {

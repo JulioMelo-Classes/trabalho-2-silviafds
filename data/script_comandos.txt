@@ -138,6 +138,10 @@ enter-channel 3 casa
 enter-channel 2 carro
 enter-channel 1 apostila
 enter-channel 3 quadro
+enter-channel 1 apartamento
+leave-channel 3
+leave-channel 2
+leave-channel 1
 
 
 
