@@ -281,7 +281,7 @@ string Sistema::remove_server(int id, const string nome) {
           servidores.erase(itr);
           return "Servidor removido.";
         } else {
-          return "Você não é dono";
+          return "Você não é dono(a) do servidor, portanto não pode removê-lo.";
         }
       }
     } 
@@ -468,19 +468,30 @@ string Sistema::enter_channel(int id, const string nome) {
 
 string Sistema::leave_channel(int id) {
 
-  string servidor_visualizado, canal;
+  string servidor_visualizado, canal, canal2;
 
-  auto iter = usuariosLogados.find(id);
-  servidor_visualizado = iter->second.first;
-  canal = iter->second.second;
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    auto iter = usuariosLogados.find(id);
+    servidor_visualizado = iter->second.first;
+    canal = iter->second.second;
 
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if((*itr).getNome_servidor() == servidor_visualizado){
-      cout << "Servidor a verificar canal: " << servidor_visualizado << endl;
-      cout  << "Canal a sair: " << canal << endl;
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      if((*itr).getNome_servidor() == servidor_visualizado){
+        if(iter->second.second == ""){
+          return "Você não está visualizando este canal.";
+        }else{
+          //cout << "Servidor a verificar canal: " << servidor_visualizado << endl;
+          //cout  << "Canal a sair: " << canal << endl;
+          iter->second.second = "";
+          canal2 = iter->second.second;
+          return "Saindo do canal '" + canal + "'.";
+          //cout << "Canal que saiu: " << canal2 << endl;
+        }
+      }
     }
+  } else{
+      return "Você não está logado(a).";
   }
-
   return "";
 }
 
