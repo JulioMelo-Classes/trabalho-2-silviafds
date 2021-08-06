@@ -132,7 +132,12 @@ create-channel 1 churrasqueira
 list-channels 1
 list-channels 2 
 list-channels 3
-enter-channel 2 casa
+enter-channel 2 quadro
+enter-channel 1 churrasqueira
+enter-channel 3 casa
+enter-channel 2 carro
+enter-channel 1 apostila
+enter-channel 3 quadro
 
 
 

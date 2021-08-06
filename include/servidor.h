@@ -31,6 +31,7 @@ class Servidor{
 		void mostrarParticipantes(vector<Usuario>& usuarios);
 		bool criarCanais(string nome_do_canal);
 		void mostrarCanais();
+		bool verificarCanais(string nome_entrar_canal);
 
 
 };

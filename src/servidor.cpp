@@ -101,3 +101,20 @@ void Servidor::mostrarCanais(){
         cout << itr->getNomeCanal()<< endl; 
     }
 }
+
+bool Servidor::verificarCanais(string nome_entrar_canal){
+
+    auto iter = find_if(canaisTexto.begin(), canaisTexto.end(), [nome_entrar_canal](CanalTexto obj){
+        if(obj.getNomeCanal() == nome_entrar_canal){
+            return true;
+        } else{
+            return false;
+        }
+    });
+
+    if(iter != canaisTexto.end()){
+        return true;
+    } else{
+        return false;
+    }
+}
