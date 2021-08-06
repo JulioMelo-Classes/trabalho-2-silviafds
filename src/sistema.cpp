@@ -389,18 +389,18 @@ string Sistema::list_channels(int id) {
 
   string servidor_visualizado;
 
-  auto itr2 = usuariosLogados.find(id);
-  servidor_visualizado = itr2->second.first;
-
   if(usuariosLogados.find(id) != usuariosLogados.end()){
+    auto itr2 = usuariosLogados.find(id);
+    servidor_visualizado = itr2->second.first;
+
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
         cout << "Servidor: " << servidor_visualizado << endl; // feito para testes
         ptr->mostrarCanais();
       }
     }
-  }else{
-    return "Você não está logado.";
+  } else{
+      return "Você não está logado.";
   }
 
   return "";
@@ -410,28 +410,33 @@ string Sistema::create_channel(int id, const string nome) {
 
   string servidores_visualizado;
 
-  auto itr2 = usuariosLogados.find(id);
-  servidores_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    auto itr2 = usuariosLogados.find(id);
+    servidores_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
 
-  if(servidores_visualizado == " "){
-    return "Servidor não encontrado.";
-  }
-
-  auto it = find_if(servidores.begin(), servidores.end(), [servidores_visualizado](Servidor servidor){
-    if(servidor.getNome_servidor() == servidores_visualizado){
-      return true;
-    } else{
-      return false;
+  
+    if(servidores_visualizado == " "){
+      return "Servidor não encontrado.";
     }
-  });
 
-  if(it != servidores.end()){ //se o iterator não for igual ao final, ele achou um servidor, do contrario, não achou
-    if(it->verificarCanais(nome)){
-      itr2->second.second = nome; 
-      return "Canal de texto '" + nome + "' criado.";
-    } else {
-      return "Canal de texto '" + nome + "' já existe.";
+    auto it = find_if(servidores.begin(), servidores.end(), [servidores_visualizado](Servidor servidor){
+      if(servidor.getNome_servidor() == servidores_visualizado){
+        return true;
+      } else{
+        return false;
+      }
+    });
+
+    if(it != servidores.end()){ //se o iterator não for igual ao final, ele achou um servidor, do contrario, não achou
+      if(it->verificarCanais(nome)){
+        itr2->second.second = nome; 
+        return "Canal de texto '" + nome + "' criado.";
+      } else {
+        return "Canal de texto '" + nome + "' já existe.";
+      }
     }
+  } else{
+    return "Você não está logado.";
   }
 
   return "";

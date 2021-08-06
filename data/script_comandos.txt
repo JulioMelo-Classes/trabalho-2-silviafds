@@ -116,6 +116,7 @@ enter-server 3 jaca 34
 enter-server 3 professor
 enter-server 2 ovomaltine 47
 enter-server 1 rapadura 66
+enter-server 2 acai 19
 enter-server 1 acai
 list-participants 3
 list-participants 1
