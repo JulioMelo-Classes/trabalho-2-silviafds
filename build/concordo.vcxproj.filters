@@ -16,6 +16,9 @@
     <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\canaltexto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\src\Mensagem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\brend\Documents\UFRN\BTI\2021.1\LP1\Unidade2\trabalho-2-silviafds\CMakeLists.txt" />

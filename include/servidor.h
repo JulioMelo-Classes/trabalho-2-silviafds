@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "canaltexto.h"
+#include "Mensagem.h"
 #include "usuario.h"
 using namespace std;
 
@@ -32,6 +33,8 @@ class Servidor{
 		bool criarCanais(string nome_do_canal);
 		void mostrarCanais();
 		bool verificarCanais(string nome_entrar_canal);
+		//void verificarMensagens(vector<Mensagem>& mensagens, string data_hora, int id_remetente, string conteudo_da_mensagem);
+		void percorrerCanais(string data_hora, int id_remetente, string conteudo_da_mensagem, string canal_n);
 
 
 };

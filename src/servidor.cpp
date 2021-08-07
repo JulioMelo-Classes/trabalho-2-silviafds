@@ -98,7 +98,7 @@ bool Servidor::criarCanais(string nome_do_canal){
 
 void Servidor::mostrarCanais(){
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
-        cout << itr->getNomeCanal()<< endl; 
+        cout << itr->getNomeCanal()<< endl;
     }
 }
 
@@ -106,9 +106,9 @@ bool Servidor::verificarCanais(string nome_entrar_canal){
 
     auto iter = find_if(canaisTexto.begin(), canaisTexto.end(), [nome_entrar_canal](CanalTexto obj){
         if(obj.getNomeCanal() == nome_entrar_canal){
-            return true;
+            return true; 
         } else{
-            return false;
+            return false; 
         }
     });
 
@@ -116,5 +116,12 @@ bool Servidor::verificarCanais(string nome_entrar_canal){
         return true;
     } else{
         return false;
+    }
+}
+
+void Servidor::percorrerCanais(string data_hora, int id_remetente, string conteudo_da_mensagem, string canal_n){
+    for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
+        if((*itr).getNomeCanal() == canal_n){}
+            itr->verificarMensagens(data_hora, id_remetente, conteudo_da_mensagem);
     }
 }

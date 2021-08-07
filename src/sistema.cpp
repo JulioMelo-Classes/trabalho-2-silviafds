@@ -1,6 +1,8 @@
 #include "usuario.h"
 #include "sistema.h"
 #include "servidor.h"
+#include "canaltexto.h"
+#include "Mensagem.h"
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -9,6 +11,8 @@
 #include <cstring>
 #include <vector>
 #include <map>
+#include <time.h>
+#include <ctime>
 using namespace std;
 
 /* COMANDOS */
@@ -496,7 +500,37 @@ string Sistema::leave_channel(int id) {
 }
 
 string Sistema::send_message(int id, const string mensagem) {
-  return "send_message NÃO IMPLEMENTADO";
+
+  time_t timer;
+  struct tm *horarioLocal;
+  string canal, servidor_visualizado;
+  int pessoa;
+
+  time(&timer);
+  horarioLocal = localtime(&timer);
+
+  int dia = horarioLocal->tm_mday, mes = horarioLocal->tm_mon + 1, ano = horarioLocal->tm_year + 1900, hora = horarioLocal->tm_hour, min = horarioLocal->tm_min;
+
+  std::string data_completa = "<" + std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano) + "-" + std::to_string(hora) + ":" + std::to_string(min) + ">";
+
+  cout << "Data completa: " << data_completa << endl;
+
+  auto iter = usuariosLogados.find(id);
+  pessoa = iter->first;
+  canal = iter->second.second;
+  servidor_visualizado = iter->second.first;
+
+
+  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+    //if((*itr).getNome_servidor() == servidor_visualizado){
+      if(itr->verificarCanais(canal)){
+        itr->percorrerCanais(data_completa, id, mensagem, canal);
+      }
+    //}
+  }
+
+
+  return "";
 }
 
 string Sistema::list_messages(int id) {

@@ -8,11 +8,12 @@ using namespace std;
 class CanalTexto{
 	private:
 		string nome;
-		vector<Mensagem> mensagens;
+		vector<Mensagem> mensagens; //não pode haver get e set
 
 	public:
 		string getNomeCanal();
 		void setNomeCanal(string nome_do_canal);
+		void verificarMensagens(string data_hora, int id_remetente, string conteudo_da_mensagem);
 };
 
 #endif

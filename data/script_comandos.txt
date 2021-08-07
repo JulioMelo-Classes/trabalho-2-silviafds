@@ -135,11 +135,11 @@ list-channels 3
 enter-channel 2 quadro
 enter-channel 1 churrasqueira
 enter-channel 3 casa
+enter-channel 3 piloto
 enter-channel 2 carro
 enter-channel 1 apostila
-enter-channel 3 quadro
+send-message 3 Oi gente
 leave-channel 3
-disconnect 2
 leave-channel 2
 leave-channel 1
 
