@@ -522,13 +522,12 @@ string Sistema::send_message(int id, const string mensagem) {
 
 
   for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    //if((*itr).getNome_servidor() == servidor_visualizado){
+    if((*itr).getNome_servidor() == servidor_visualizado){
       if(itr->verificarCanais(canal)){
         itr->percorrerCanais(data_completa, id, mensagem, canal);
       }
-    //}
+    }
   }
-
 
   return "";
 }
@@ -536,8 +535,6 @@ string Sistema::send_message(int id, const string mensagem) {
 string Sistema::list_messages(int id) {
   return "list_messages NÃO IMPLEMENTADO";
 }
-
-
 
 
 /* IMPLEMENTAR MÉTODOS PARA OS COMANDOS RESTANTES */

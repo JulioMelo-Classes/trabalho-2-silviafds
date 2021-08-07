@@ -121,7 +121,8 @@ bool Servidor::verificarCanais(string nome_entrar_canal){
 
 void Servidor::percorrerCanais(string data_hora, int id_remetente, string conteudo_da_mensagem, string canal_n){
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
-        if((*itr).getNomeCanal() == canal_n){}
+        if((*itr).getNomeCanal() == canal_n){
             itr->verificarMensagens(data_hora, id_remetente, conteudo_da_mensagem);
+        }
     }
 }

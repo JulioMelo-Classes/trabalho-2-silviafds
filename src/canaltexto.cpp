@@ -23,9 +23,12 @@ void CanalTexto::verificarMensagens(string data_hora, int id_remetente, string c
     obj.setConteudo(conteudo_da_mensagem);
     mensagens.push_back(obj);
 
-    cout << "Data: " << obj.getData_hora() << endl;
+    int tam = mensagens.size();
+
+    /*cout << "Data: " << obj.getData_hora() << endl;
     cout << "Pessoa: " << obj.getEnviadaPor() << endl;
     cout << "Mensagem: " << obj.getConteudo() << endl;
+    cout << "tam mensagens " << tam << endl;*/
 
     /*for(auto itr = mensagens.begin(); itr != mensagens.end(); itr++ ){
         cout << "Data: " << itr->getData_hora() << endl;
