@@ -504,7 +504,6 @@ string Sistema::send_message(int id, const string mensagem) {
   time_t timer;
   struct tm *horarioLocal;
   string canal, servidor_visualizado;
-  int pessoa;
 
   time(&timer);
   horarioLocal = localtime(&timer);
@@ -513,27 +512,30 @@ string Sistema::send_message(int id, const string mensagem) {
 
   std::string data_completa = "<" + std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano) + "-" + std::to_string(hora) + ":" + std::to_string(min) + ">";
 
-  cout << "Data completa: " << data_completa << endl;
+  //cout << "Data completa: " << data_completa << endl;
 
-  auto iter = usuariosLogados.find(id);
-  pessoa = iter->first;
-  canal = iter->second.second;
-  servidor_visualizado = iter->second.first;
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    auto iter = usuariosLogados.find(id);
+    canal = iter->second.second;
+    servidor_visualizado = iter->second.first;
 
-
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    if((*itr).getNome_servidor() == servidor_visualizado){
-      if(itr->verificarCanais(canal)){
-        itr->percorrerCanais(data_completa, id, mensagem, canal);
+  
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      if((*itr).getNome_servidor() == servidor_visualizado){
+        if(itr->verificarCanais(canal)){
+          itr->percorrerCanais(data_completa, id, mensagem, canal);
+        }
       }
     }
+  } else{
+    return "Você não está logado.";
   }
 
   return "";
 }
 
 string Sistema::list_messages(int id) {
-  return "list_messages NÃO IMPLEMENTADO";
+  return "";
 }
 
 
