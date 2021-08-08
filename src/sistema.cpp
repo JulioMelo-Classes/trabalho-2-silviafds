@@ -510,7 +510,7 @@ string Sistema::send_message(int id, const string mensagem) {
 
   int dia = horarioLocal->tm_mday, mes = horarioLocal->tm_mon + 1, ano = horarioLocal->tm_year + 1900, hora = horarioLocal->tm_hour, min = horarioLocal->tm_min;
 
-  std::string data_completa = "<" + std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano) + "-" + std::to_string(hora) + ":" + std::to_string(min) + ">";
+  std::string data_completa = " <" + std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano) + " - " + std::to_string(hora) + ":" + std::to_string(min) + ">";
 
   //cout << "Data completa: " << data_completa << endl;
 
@@ -518,14 +518,13 @@ string Sistema::send_message(int id, const string mensagem) {
     auto iter = usuariosLogados.find(id);
     canal = iter->second.second;
     servidor_visualizado = iter->second.first;
-
   
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-      if((*itr).getNome_servidor() == servidor_visualizado){
-        if(itr->verificarCanais(canal)){
+      //if((*itr).getNome_servidor() == servidor_visualizado){
+        //if(itr->verificarCanais(canal)){
           itr->percorrerCanais(data_completa, id, mensagem, canal);
-        }
-      }
+        //}
+      //}
     }
   } else{
     return "Você não está logado.";
@@ -535,6 +534,33 @@ string Sistema::send_message(int id, const string mensagem) {
 }
 
 string Sistema::list_messages(int id) {
+
+  string canal_visualizado, servidor_visualizado, nome_usuario;
+  int id_usuario;
+
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    auto iter = usuariosLogados.find(id);
+    id_usuario = iter->first;
+    canal_visualizado = iter->second.second;
+    servidor_visualizado = iter->second.first;
+
+    /*for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
+        nome_usuario = itr->;
+        //cout << "nome: " << nome_usuario << endl;
+    }*/
+
+    for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
+      if((*ptr).getNome_servidor() == servidor_visualizado){
+        ptr->listarMensagensCanais(usuarios, canal_visualizado, id);
+      }
+    }
+
+  } else {
+    return "Você não está logado.";
+  }
+
+
+
   return "";
 }
 

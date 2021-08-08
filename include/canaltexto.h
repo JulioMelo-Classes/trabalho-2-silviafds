@@ -13,7 +13,8 @@ class CanalTexto{
 	public:
 		string getNomeCanal();
 		void setNomeCanal(string nome_do_canal);
-		void verificarMensagens(string data_hora, int id_remetente, string conteudo_da_mensagem);
+		void enviarMensagens(string data_hora, int id_remetente, string conteudo_da_mensagem);
+		void listarMensagens(string nome);
 };
 
 #endif

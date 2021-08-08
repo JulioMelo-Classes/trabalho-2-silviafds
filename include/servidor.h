@@ -33,8 +33,8 @@ class Servidor{
 		bool criarCanais(string nome_do_canal);
 		void mostrarCanais();
 		bool verificarCanais(string nome_entrar_canal);
-		//void verificarMensagens(vector<Mensagem>& mensagens, string data_hora, int id_remetente, string conteudo_da_mensagem);
 		void percorrerCanais(string data_hora, int id_remetente, string conteudo_da_mensagem, string canal_n);
+		void listarMensagensCanais(vector<Usuario>& usuarios, string canal_visto, int id);
 
 
 };

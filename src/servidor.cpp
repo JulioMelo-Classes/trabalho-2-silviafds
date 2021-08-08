@@ -122,7 +122,26 @@ bool Servidor::verificarCanais(string nome_entrar_canal){
 void Servidor::percorrerCanais(string data_hora, int id_remetente, string conteudo_da_mensagem, string canal_n){
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
         if((*itr).getNomeCanal() == canal_n){
-            itr->verificarMensagens(data_hora, id_remetente, conteudo_da_mensagem);
+            itr->enviarMensagens(data_hora, id_remetente, conteudo_da_mensagem);
+        }
+    }
+}
+
+void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, string canal_visto, int id){
+
+    string nome_usuario;
+
+    for(auto itr2 = usuarios.begin(); itr2 != usuarios.end(); itr2++){
+        //for(auto ptr = participantesIDs.begin(); ptr!= participantesIDs.end(); ptr++){
+            if(itr2->id == id){
+                nome_usuario = itr2->nome;
+            }
+        //}
+    }
+
+    for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
+        if((*itr).getNomeCanal() == canal_visto){
+            itr->listarMensagens(nome_usuario);
         }
     }
 }

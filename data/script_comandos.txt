@@ -139,8 +139,14 @@ enter-channel 3 piloto
 enter-channel 2 carro
 enter-channel 1 apostila
 send-message 3 Oi gente
-send-message 2 falou
-disconnect 2
+send-message 2 Oi, Silvia
+send-message 2 Oi, Brenda
+send-message 1 
+send-message 1 ola
+send-message 3 Oi, meninas
+list-messages 2
+list-messages 1
+list-messages 3
 send-message 2 ajdej
 leave-channel 3
 leave-channel 2
