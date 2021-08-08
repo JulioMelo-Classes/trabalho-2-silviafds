@@ -33,8 +33,6 @@ void CanalTexto::enviarMensagens(string data_hora, int id_remetente, string cont
 
 void CanalTexto::listarMensagens(string nome_usuario){
 
-    int tam = mensagens.size();
-
     for(auto itr = mensagens.begin(); itr != mensagens.end(); itr++){
         if(itr->getConteudo() != ""){
             cout << nome_usuario << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;

@@ -132,11 +132,9 @@ void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, string canal_vis
     string nome_usuario;
 
     for(auto itr2 = usuarios.begin(); itr2 != usuarios.end(); itr2++){
-        //for(auto ptr = participantesIDs.begin(); ptr!= participantesIDs.end(); ptr++){
-            if(itr2->id == id){
-                nome_usuario = itr2->nome;
-            }
-        //}
+        if(itr2->id == id){
+            nome_usuario = itr2->nome;
+        }
     }
 
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
