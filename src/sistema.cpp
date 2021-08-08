@@ -544,11 +544,6 @@ string Sistema::list_messages(int id) {
     canal_visualizado = iter->second.second;
     servidor_visualizado = iter->second.first;
 
-    /*for(auto itr = usuarios.begin(); itr != usuarios.end(); itr++){
-        nome_usuario = itr->;
-        //cout << "nome: " << nome_usuario << endl;
-    }*/
-
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
         ptr->listarMensagensCanais(usuarios, canal_visualizado, id);
@@ -559,10 +554,5 @@ string Sistema::list_messages(int id) {
     return "Você não está logado.";
   }
 
-
-
   return "";
 }
-
-
-/* IMPLEMENTAR MÉTODOS PARA OS COMANDOS RESTANTES */
