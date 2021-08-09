@@ -9,7 +9,7 @@
 
 * **Como executar o projeto:**
     - Valido para linux:
-        1. ./concordo < ../data/comandos.txt
+        1. ./concordo <  ../data/comandos.txt
 
     - Valido para windows:
         1. Debug\concordo.exe
