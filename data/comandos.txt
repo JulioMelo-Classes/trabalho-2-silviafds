@@ -62,3 +62,4 @@ send-message 1 Tb vou, meu user é Vane99
 list-messages 1
 list-messages 2
 list-messages 3
+quit
