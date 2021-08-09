@@ -66,6 +66,7 @@ create-server 2 acai
 create-server 3 professor
 create-server 1 ovomaltine
 create-server 2 rapadura
+remove-server 2 acai
 create-server 3 imd
 list-servers 1
 set-server-desc 2 acai "Testando."
@@ -73,7 +74,6 @@ set-server-desc 2 fulaninho
 set-server-desc 3 professor "teste"
 set-server-desc 1 rapadura
 set-server-desc 3 imd "Instituto"
-disconnect 1
 set-server-desc 1 psicologa
 set-server-invite-code 2 acai 5446
 set-server-invite-code 2 acai
@@ -106,21 +106,19 @@ set-server-invite-code 2 rapadura 66
 set-server-invite-code 3 imd 65
 set-server-invite-code 1 ovomaltine 47
 set-server-invite-code 2 jaca 34
-enter-server 2 acai 34 
+list-servers 2
 enter-server 3 rapadura
 enter-server 1 professor
-enter-server 2 acai 19
 enter-server 1 ovomaltine
 enter-server 3 ovomaltine 47
 enter-server 3 jaca 34
 enter-server 3 professor
-enter-server 2 ovomaltine 47
 enter-server 1 rapadura 66
-enter-server 2 acai 19
 enter-server 1 acai
 list-participants 3
 list-participants 1
 create-channel 3 quadro
+leave-channel 2 apartamento
 create-channel 3 piloto
 create-channel 3 apostila
 create-channel 3 conhecimento
@@ -138,6 +136,7 @@ enter-channel 3 casa
 enter-channel 3 piloto
 enter-channel 2 carro
 enter-channel 1 apostila
+list-messages 2
 send-message 3 Oi gente
 send-message 2 Oi, Silvia
 send-message 2 Oi, Brenda

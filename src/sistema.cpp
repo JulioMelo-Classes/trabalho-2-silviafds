@@ -21,40 +21,39 @@ string Sistema::quit() {
 }
 
 /*! 
- * @brief Função na qual cria usuário. 
+ * @brief Método implementado para criar um(a) usuário(a). 
  *
- * @param email é uma string onde está armazenado o email correspondente ao usuário.
- * @param senha é uma string onde está armazenada a senha correspondente ao usuário.
- * @param nome é uma string onde está armazenado o nome correspondente ao usuário.
+ * @param email atributo do tipo string que armazena o e-mail correspondente ao/à usuário(a).
+ * @param senha atributo do tipo string que armazena a senha correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao/à usuário(a).
  *
- * @return retorna a mensagem que o usuário foi criado ou que já existe (a depender da situação).
+ * @return uma string contendo uma mensagem de erro caso o(a) usuário(a) já tenha sido criado(a) ou "Usuário(a) criado(a)."
  */
-
-Usuario st_nome;
-std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
     
-  st_nome.email = email;
+  Usuario objCentral;
+
+  objCentral.email = email;
   
   int tam, aux = 0;
   tam = usuarios.size();
 
   if(tam == 0){//ele é o 1º usuario a ser criado
-    st_nome.id = 1;
-    st_nome.email = email;
-    st_nome.senha = senha;
-    st_nome.nome = nome;
+    objCentral.id = 1;
+    objCentral.email = email;
+    objCentral.senha = senha;
+    objCentral.nome = nome;
 
-    usuarios.push_back(st_nome);
-    email_validos.push_back(st_nome.email);
+    usuarios.push_back(objCentral);
+    email_validos.push_back(objCentral.email);
     tam = usuarios.size();
     return "\nUsuário criado\n";
 
   } else if (tam >= 1){
     
     for(int i = 0; i < tam; i++){//descobre se o usuário existe
-      if( email_validos[i] == st_nome.email ){
+      if( email_validos[i] == objCentral.email ){
         aux++;
       }
     }
@@ -62,12 +61,12 @@ string Sistema::create_user (const string email, const string senha, const strin
     if(aux > 0){
       return "Usuário já existe!\n";
     }else{
-      st_nome.id = tam + 1;
-      st_nome.email = email;
-      st_nome.senha = senha;
-      st_nome.nome = nome;
-      usuarios.push_back(st_nome);
-      email_validos.push_back(st_nome.email);
+      objCentral.id = tam + 1;
+      objCentral.email = email;
+      objCentral.senha = senha;
+      objCentral.nome = nome;
+      usuarios.push_back(objCentral);
+      email_validos.push_back(objCentral.email);
 
       tam = usuarios.size();
     }
@@ -77,12 +76,13 @@ string Sistema::create_user (const string email, const string senha, const strin
 }
 
 /*! 
- * @brief Função que o usuário faz login no sistema. 
+ * @brief Método implementado para realizar o login de um(a) usuário(a) no sistema. 
  *
- * @param email é uma string onde está armazenado o email correspondente ao usuário.
- * @param senha é uma string onde está armazenada a senha correspondente ao usuário.
+ * @param email atributo do tipo string que armazena o e-mail correspondente ao/à usuário(a).
+ * @param senha atributo do tipo string que armazena a senha correspondente ao/à usuário(a).
  *
- * @return retorna se a senha ou usuário sé inválidos ou mostra quem fez login no sistema.
+ * @return uma string contendo a mensagem de erro: "Senha ou usuário inválidos." caso seja necessário e, caso não, retorna "Logado como <email>".
+ * 
  */
 string Sistema::login(const string email, const string senha) {
   
@@ -106,11 +106,12 @@ string Sistema::login(const string email, const string senha) {
 }
 
 /*! 
- * @brief Função que disconecta o usuário do sistema. 
+ * @brief Método implementado para desconectar um(a) usuário específico do sistema. 
  *
- * @param id é o número que corresponde a cada usuário, quando digitado aqui, faz logout do usuário.
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
  *
- * @return retorna se o usuário fi desconectado ou se ele nem se conectou.
+ * @return uma string contendo uma mensagem de erro para caso o(a) usuário(a) não esteja conectado(a) ou "Desconectando usuário <email>" caso esteja conectado(a). 
+ *
  */
 string Sistema::disconnect(int id) {
   Usuario avisoemail;
@@ -142,10 +143,10 @@ string Sistema::disconnect(int id) {
 /*! 
  * @brief Função na qual cria um servidor. 
  *
- * @param id número que identifica cada usuário no sistema
- * @param nome é uma string onde está armazenado o nome correspondente ao usuário.
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao servidor a ser criado.
  *
- * @return retorna se o servidor foi criado ou se o servidor já existe ou não retorna nada caso não possa criar.
+ * @return uma string contendo uma mensagem de erro caso já exista um servidor com esse nome ou o(a) usuário(a) não esteja logado(a) e uma string contendo "Servidor <nome> criado." caso não haja nenhum erro.
  */
 string Sistema::create_server(int id, const string nome) {
 
@@ -158,7 +159,7 @@ string Sistema::create_server(int id, const string nome) {
   if(usuariosLogados.find(id) != usuariosLogados.end()){ //verifica se o usuário está logado.
     if(tam == 0 && id > 0){
     servidores.push_back(proprio_servidor);
-    return "Servidor criado.";
+    return "Servidor '" + nome + "' criado.";
     } else {
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
         if(nome == (*itr).getNome_servidor()){
@@ -169,7 +170,7 @@ string Sistema::create_server(int id, const string nome) {
     }
     if(aux == 0 && id > 0){
     servidores.push_back(proprio_servidor);
-    return "Servidor criado.";
+    return "Servidor '" + nome + "' criado.";
     }
   } else {
     return "Você não está logado(a), portanto não pode criar servidores.";
@@ -179,13 +180,13 @@ string Sistema::create_server(int id, const string nome) {
 }
 
 /*! 
- * @brief Função na qual muda a descrição do servidor. 
+ * @brief método implementado para modificar a descrição do servidor passado como parâmetro. 
  *
- * @param id número que identifica cada usuário no sistema.
- * @param nome é uma string que corresponde ao nome do servidor.
- * @param descricao string na qual está a descrição digitada pelo usuário
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome do servidor.
+ * @param descricao atributo do tipo string que armazena a nova descrição dada pelo(a) usuário(a).
  *
- * @return retorna se a descrição do servidor foi modificada com sucesso ou retorna a mensagem que o usuário só pode modificar se ele for o dono.
+ * @return string contendo uma mensagem de erro caso o servidor passado como parâmetro não exista, uma mensagem de erro caso o(a) usuário(a) não esteja logado(a), uma mensagem de erro caso o id passado como parâmetro não seja dono(a) do servidor e "Descrição do servidor <nome> modificada!" caso não haja nenhum erro.
  */
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
 
@@ -214,13 +215,13 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
 }
 
 /*! 
- * @brief Função na qual seta código de convite para o servidor. 
+ * @brief método implementado para modificar o código de convite de um servidor específico. 
  *
- * @param id número que identifica cada usuário no sistema.
- * @param nome é uma string que corresponde ao nome do servidor.
- * @param codigo é a string onde está o código de comvite do servidor
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao servidor que a pessoa quer alterar o código.
+ * @param codigo atributo do tipo string que armazena o código de convite a ser alterado.
  *
- * @return retorna mensagem caso o código de convite foi modificado, ou removido, ou o usuário não pode modificar um código de um servidor que nçao é dono, ou se o servidor não existe
+ * @return "Código de convite do servidor <nome> modificado com sucesso" caso não haja erros e, caso haja, serão retornadas strings contendo mensagens de erro caso o(a) usuário(a) não esteja logado(a), caso o(a) usuário(a) não seja o(a) dono(a), caso o código seja removido, e caso o servidor não exista.
  */
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
 
@@ -239,7 +240,7 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
           } else {        
             ptr->setCodigoConvite(codigo); // OK
             cout << "Código de convite: "<< ptr->getCodigoConvite() << endl;
-            return "Código de convite do servidor '" + nome + "' modificado.";
+            return "Código de convite do servidor '" + nome + "' modificado com sucesso.";
           }
         } else {
             return "Você não pode alterar o código de um servidor que você não é o(a) dono(a).";
@@ -253,17 +254,21 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
 }
 
 /*! 
- * @brief Função que lista todos os servidores corresponde ao usuário. 
+ * @brief método que lista todos os servidores que estão cadastrados no sistema.
  *
- * @param id número que identifica cada usuário no sistema.
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
  *
- * @return retorna nada pois a apresentação dos servidores se concentra na linha 264.
+ * @return uma string vazia ou uma mensagem de erro caso o(a) usuário(a) não esteja logado(a).
  */
 string Sistema::list_servers(int id) {
 
   cout << endl;
-  for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
-    cout << ((*itr).getNome_servidor()) << endl;
+  if(usuariosLogados.find(id) != usuariosLogados.end()){
+    for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+      cout << ((*itr).getNome_servidor()) << endl;
+    }
+  } else{
+    return "Você não está logado(a).";
   }
   return "";
 }
@@ -271,10 +276,10 @@ string Sistema::list_servers(int id) {
 /*! 
  * @brief Função que remove um servidor
  *
- * @param id número que identifica cada usuário no sistema.
- * @param nome é uma string que corresponde ao nome do servidor.
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome  correspondente ao servidor.
  *
- * @return se o usuário for dono do servidor, remove o servidor, se o usuário não for dono do servidor e tentar remover, não remove, se o servidor não for encontrado, retorna que não foi encontrado o servidor.
+ * @return "Servidor <nome> removido com sucesso." todas as validações sejam cumpridas; caso contrário, serão retornadas mensagens de erro se o(a) usuário(a) não for dono(a) do servidor, bem como se não estiver logado(a) e caso o servidor não seja encontrado.
  */
 string Sistema::remove_server(int id, const string nome) {
 
@@ -283,7 +288,7 @@ string Sistema::remove_server(int id, const string nome) {
       if(itr->getNome_servidor() == nome){
         if(itr->getID() == id){ 
           servidores.erase(itr);
-          return "Servidor removido.";
+          return "Servidor '" + nome + "' removido com sucesso.";
         } else {
           return "Você não é dono(a) do servidor, portanto não pode removê-lo.";
         }
@@ -291,13 +296,24 @@ string Sistema::remove_server(int id, const string nome) {
     } 
     return "Servidor não encontrado.";
   } else {
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
 
   return "";
 }
 
+/*! 
+ * @brief método que faz com que o(a) usuário(a) entre em um servidor.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao servidor.
+ * @param codigo atributo do tipo string que armazena o código de convite para entrar no sistema.
+ *
+ * @return "Entrou no servidor <nome> com sucesso" caso todas as validações sejam cumpridas; ou mensagens de erro para caso o(a) usuário(a) não forneça o código de acesso, caso o código de acesso fornecido estiver incorreto e caso o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::enter_server(int id, const string nome, const string codigo) { 
+
+  std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
@@ -307,7 +323,7 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
           iterator_nome = usuariosLogados.find(id);
           iterator_nome->second.first = itr->getNome_servidor();
           itr->testarParticipantes(nome);
-          return "Entrou no servidor com sucesso.";
+          return "Entrou no servidor '" + nome + "' com sucesso.";
         } else if(itr->getCodigoConvite() != codigo && codigo == ""){
             return "Servidor requer código de acesso.";
         } else if(itr->getCodigoConvite() == codigo){
@@ -315,12 +331,14 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
             iterator_nome = usuariosLogados.find(id);
             iterator_nome->second.first = itr->getNome_servidor();
             itr->testarParticipantes(nome);
-            return "Entrou no servidor com sucesso.";
+            return "Entrou no servidor '" + nome + "' com sucesso.";
           } else {
             return "Código de acesso errado.";
           }
       }
     }
+  } else{
+    return "Você não está logado(a).";
   }
 
   //FOR USADO PARA SABERMOS QUAL SERVIDOR O USUÁRIO ESTÁ VISUALIZANDO
@@ -333,7 +351,17 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
   return "";
 }
 
+/*! 
+ * @brief método que faz com que o(a) usuário(a) saia de um servidor em que esteja conectado(a).
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao servidor.
+ *
+ * @return "Saindo do servidor <nome>." caso todas as validações sejam cumpridas; ou mensagens de erro para caso o(a) usuário(a) não esteja logado(a) ou tampouco conectado(a) a algum servidor.
+ */
 string Sistema::leave_server(int id, const string nome) {
+
+  std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
@@ -351,7 +379,7 @@ string Sistema::leave_server(int id, const string nome) {
       } 
     }
   } else{
-    cout << "Você não está logado.";
+    cout << "Você não está logado(a).";
   }
 
   //FOR USADO PARA SABERMOS QUAL SERVIDOR O USUÁRIO ESTÁ VISUALIZANDO
@@ -365,6 +393,13 @@ string Sistema::leave_server(int id, const string nome) {
   return "";
 }
 
+/*! 
+ * @brief método que lista os participantes que estão presentes no servidor que o(a) usuário(a) passado como parâmetro - através do id - está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ *
+ * @return uma string vazia caso todas as validações sejam cumpridas e uma mensagem de erro caso o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::list_participants(int id) {
 
   string servidor_visualizado;
@@ -383,12 +418,19 @@ string Sistema::list_participants(int id) {
       }
     }
   } else {
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
 
   return "";
 }
 
+/*! 
+ * @brief método que lista os canais do servidor que o usuário pertencente àquele id está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * 
+ * @return uma string vazia caso todas as validações sejam cumpridas e uma mensagem de erro caso o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::list_channels(int id) {
 
   string servidor_visualizado;
@@ -404,12 +446,20 @@ string Sistema::list_channels(int id) {
       }
     }
   } else{
-      return "Você não está logado.";
+      return "Você não está logado(a).";
   }
 
   return "";
 }
 
+/*! 
+ * @brief método que cria um canal no servidor em que o(a) usuário(a) está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao canal a ser criado.
+ *
+ * @return "Canal <nome> criado." caso todas as validações sejam cumpridas e mensagens de erro caso o(a) usuário(a) não esteja logado(a), caso um canal de texto com o nome passado já exista ou caso o(a) usuário(a) não esteja visualizando nenhum servidor.
+ */
 string Sistema::create_channel(int id, const string nome) {
 
   string servidores_visualizado;
@@ -439,12 +489,20 @@ string Sistema::create_channel(int id, const string nome) {
       }
     }
   } else{
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
 
   return "";
 }
 
+/*! 
+ * @brief método que faz com que o(a) usuário(a), correspondente ao id, entre em um canal específico.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param nome atributo do tipo string que armazena o nome correspondente ao canal que o(a) usuário(a) irá entrar.
+ *
+ * @return "Entrou no canal <nome>" caso todas as validações sejam cumpridas ou mensagens de erro caso o canal não exista ou o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::enter_channel(int id, const string nome) {
 
   string servidor_visualizado;
@@ -455,7 +513,7 @@ string Sistema::enter_channel(int id, const string nome) {
 
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
-        cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
+        //cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
         if(ptr->verificarCanais(nome)){
           itr2->second.second = nome;
           return "Entrou no canal '" + nome + "'.";
@@ -465,11 +523,20 @@ string Sistema::enter_channel(int id, const string nome) {
       }
     }
   } else {
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
   return "";
 }
 
+// VERIFICAR ESSE MÉTODO
+
+/*! 
+ * @brief método que faz com que o(a) usuário(a) passado como parâmetro seja retirado do canal que está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ *
+ * @return "Saindo do canal <nome>" caso todas as validações sejam cumpridas ou mensagens de erro caso o(a) usuário(a) não esteja visualizando o canal ou não esteja logado(a).
+ */
 string Sistema::leave_channel(int id) {
 
   string servidor_visualizado, canal, canal2;
@@ -499,6 +566,14 @@ string Sistema::leave_channel(int id) {
   return "";
 }
 
+/*! 
+ * @brief método que envia uma mensagem para o canal que o(a) usuário(a) passado(a) como parâmetro está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ * @param mensagem atributo do tipo string que armazena a mensagem a ser enviada ao canal.
+ *
+ * @return uma string vazia caso todas as validações sejam cumpridas e uma mensagem de erro caso o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::send_message(int id, const string mensagem) {
 
   time_t timer;
@@ -527,12 +602,19 @@ string Sistema::send_message(int id, const string mensagem) {
       //}
     }
   } else{
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
 
   return "";
 }
 
+/*! 
+ * @brief método que lista todas as mensagens do canal que o(a) usuário(a) passado(a) como parâmetro está visualizando.
+ *
+ * @param id atributo do tipo int que armazena o id correspondente ao/à usuário(a).
+ *
+ * @return uma string vazia caso todas as validações sejam cumpridas e uma mensagem de erro caso o(a) usuário(a) não esteja logado(a).
+ */
 string Sistema::list_messages(int id) {
 
   string canal_visualizado, servidor_visualizado, nome_usuario;
@@ -551,7 +633,7 @@ string Sistema::list_messages(int id) {
     }
 
   } else {
-    return "Você não está logado.";
+    return "Você não está logado(a).";
   }
 
   return "";
