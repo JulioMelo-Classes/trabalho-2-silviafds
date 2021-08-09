@@ -53,11 +53,6 @@ void Servidor::excluirParticipante(int id){
     }
 }
 
-void Servidor::testarParticipantes(string name){
-    int tam = participantesIDs.size();
-    cout << "Tamanho de participantes " << name << ": " << tam << endl;
-}
-
 bool Servidor::verificarParticipante(int id){
     for(auto itr = participantesIDs.begin(); itr != participantesIDs.end(); itr++){
         if((*itr) == id){
@@ -139,7 +134,7 @@ void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, string canal_vis
 
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
         if((*itr).getNomeCanal() == canal_visto){
-            itr->listarMensagens(nome_usuario);
+            itr->listarMensagens(nome_usuario, id);
         }
     }
 }

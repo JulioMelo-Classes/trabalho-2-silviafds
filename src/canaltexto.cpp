@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 string CanalTexto::getNomeCanal(){
     return nome;
 }
@@ -23,15 +24,9 @@ void CanalTexto::enviarMensagens(string data_hora, int id_remetente, string cont
     atributos_de_mensagens.setConteudo(conteudo_da_mensagem);
     mensagens.push_back(atributos_de_mensagens);
 
-    /*int tam = mensagens.size();
-
-    cout << "Data: " << atributos_de_mensagens.getData_hora() << endl;
-    cout << "Pessoa: " << atributos_de_mensagens.getEnviadaPor() << endl;
-    cout << "Mensagem: " << atributos_de_mensagens.getConteudo() << endl;
-    cout << "tam mensagens " << tam << endl;*/
 }
 
-void CanalTexto::listarMensagens(string nome_usuario){
+void CanalTexto::listarMensagens(string nome_usuario, int id){
 
     int tam = mensagens.size();
 
@@ -40,7 +35,9 @@ void CanalTexto::listarMensagens(string nome_usuario){
     }else{
         for(auto itr = mensagens.begin(); itr != mensagens.end(); itr++){
             if(itr->getConteudo() != ""){
-                cout << nome_usuario << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;
+                if(itr->getEnviadaPor() == id){
+                    cout << nome_usuario << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;
+                }
             }
         }
     }

@@ -1,0 +1,64 @@
+create-user ana6@gmail.com senha55 Ana Cristina
+create-user vanessa@outlook.com abc963 Vanessa Santos
+create-user mario789@gmail.com qwerf85 Mario Souza
+create-user luis@gmail.com lkjh7890 Luis Melo
+create-user bruna1@gmail.com bru12 Bruna Ferreira
+login ana6@gmail.com senha77
+login ana6@gmail.com senha55
+login vanessa@outlook.com abc963
+login mario789@gmail.com qwerf85
+login luis@gmail.com lkjh7890
+login bruna@gmail.com bru12
+login bruna1@gmail.com bru12
+disconnect 5
+disconnect 6
+login bruna1@gmail.com bru12
+create-server 1 moda-feminina
+create-server 2 musica-pop
+create-server 3 jogos
+create-server 2 jogos
+create-server 3 jogos-digitais
+set-server-desc 1 moda-feminina "Algumas novidades sobre moda!"
+set-server-desc 2 musica-pop "Vamos escutar as antigas músicas pop"
+set-server-desc 3 jogos "Qua tal um duelo hein?"
+set-server-desc 2 musicas-pop "Vem escutar Britney!"
+set-server-desc 1 jogos "Vai uma jogatina ai?"
+set-server-invite-code 1 moda-feminina 11
+set-server-invite-code 2 musica-pop 12
+set-server-invite-code 3 jogos
+list-servers 1
+list-servers 2
+list-servers 3
+remove-server 3 jogos-digitais
+remove-server 2 jogos
+remove-server 1 moda22
+enter-server 1 musica-pop
+enter-server 1 musica-pop 12
+enter-server 2 moda-feminina 11
+enter-server 1 jogos
+enter-server 2 jogos
+enter-server 3 jogos
+enter-server 4 jogos
+enter-server 5 jogos 
+enter-server 5 musica-pop 12
+enter-server 4 moda-feminina 11
+leave-server 4 moda-feminina
+leave-server 4 moda-feminina
+list-participants 2
+list-participants 1
+list-participants 5
+create-channel 5 LadyGaga
+create-channel 1 CALL-OF-DUTTY
+enter-channel 1 CALL-OF-DUTTYY
+enter-channel 1 CALL-OF-DUTTY
+enter-channel 2 CALL-OF-DUTTY
+enter-channel 3 CALL-OF-DUTTY
+send-message 1 Olá
+send-message 1 Alguém para jogar COD?
+send-message 2 Vamos
+send-message 1 Olá, WARZONE ou Mobile?
+send-message 3 WARZONE
+send-message 1 Tb vou, meu user é Vane99
+list-messages 1
+list-messages 2
+list-messages 3
