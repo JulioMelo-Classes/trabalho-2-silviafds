@@ -12,5 +12,5 @@
         1. ./concordo < ../data/comandos.txt
 
     - Valido para windows:
-        2. Debug\concordo.exe
+        1. Debug\concordo.exe
 
