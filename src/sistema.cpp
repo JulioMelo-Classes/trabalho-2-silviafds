@@ -439,6 +439,10 @@ string Sistema::list_channels(int id) {
     auto itr2 = usuariosLogados.find(id);
     servidor_visualizado = itr2->second.first;
 
+    if(servidor_visualizado == " "){
+      return "Você não tem canais para serem listados.";
+    }
+
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
         cout << "Servidor: " << servidor_visualizado << endl; //feito para testes
@@ -462,19 +466,15 @@ string Sistema::list_channels(int id) {
  */
 string Sistema::create_channel(int id, const string nome) {
 
-  string servidores_visualizado;
+  string servidor_visualizado;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     auto itr2 = usuariosLogados.find(id);
-    servidores_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
+    servidor_visualizado = itr2->second.first; //pegamos o nome do servidor do usuário logado
 
-  
-    if(servidores_visualizado == " "){
-      return "Servidor não encontrado.";
-    }
 
-    auto it = find_if(servidores.begin(), servidores.end(), [servidores_visualizado](Servidor servidor){
-      if(servidor.getNome_servidor() == servidores_visualizado){
+    auto it = find_if(servidores.begin(), servidores.end(), [servidor_visualizado](Servidor servidor){
+      if(servidor.getNome_servidor() == servidor_visualizado){
         return true;
       } else{
         return false;
@@ -518,7 +518,7 @@ string Sistema::enter_channel(int id, const string nome) {
           itr2->second.second = nome;
           return "Entrou no canal '" + nome + "'.";
         } else{
-          return "Canal '" + nome + "' não existe.";
+          return "Canal '" + nome + "' não existe no servidor em que você está.";
         }
       }
     }
