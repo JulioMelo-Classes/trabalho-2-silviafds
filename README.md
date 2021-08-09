@@ -15,5 +15,5 @@
         1. Debug\concordo.exe
 
 * **Limitações ou funcionalidades não implementadas no programa.**
-    - Não houveram problemas.
+    - Só estamos conseguindo aprensentar as mensagens por id.
 
