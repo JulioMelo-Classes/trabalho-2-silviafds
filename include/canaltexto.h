@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Mensagem.h"
+#include "usuario.h"
 using namespace std;
 
 class CanalTexto{
@@ -39,7 +40,7 @@ class CanalTexto{
 		*
 		* @param nome_usuario atributo do tipo string que armazena o nome do(a) usuário(a) que enviou a mensagem.
 		*/
-		void listarMensagens(string nome, int id);
+		void listarMensagens(vector<Usuario>& usuarios);
 };
 
 #endif

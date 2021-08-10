@@ -147,8 +147,7 @@ class Servidor{
 		* @param canal_visto atributo do tipo string que armazena o nome do canal que está sendo visualizado pelo(a) usuário(a).
 		* @param id atributo do tipo int que armazena o id do(a) usuário(a) que enviou a mensagem.
 		*/
-		void listarMensagensCanais(vector<Usuario>& usuarios, int id);
-
+		void listarMensagensCanais(vector<Usuario>& usuarios, string canal, int id);
 
 };
 

@@ -16,5 +16,5 @@
         2. Copiar o conteúdo presente no arquivo data/comandos.txt
 
 * **Limitações ou funcionalidades não implementadas no programa.**
-    - Só estamos conseguindo aprensentar as mensagens por id.
+    - Todas as funcionalidades foram implementadas.
 

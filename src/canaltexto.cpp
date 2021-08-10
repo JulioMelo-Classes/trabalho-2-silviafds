@@ -26,7 +26,7 @@ void CanalTexto::enviarMensagens(string data_hora, int id_remetente, string cont
 
 }
 
-void CanalTexto::listarMensagens(string nome_usuario, int id){
+void CanalTexto::listarMensagens(vector<Usuario>& usuarios){
 
     int tam = mensagens.size();
 
@@ -34,11 +34,13 @@ void CanalTexto::listarMensagens(string nome_usuario, int id){
         cout << "Sem mensagens para exibir." << endl;
     }else{
         for(auto itr = mensagens.begin(); itr != mensagens.end(); itr++){
-            //if(itr->getConteudo() != ""){
-                //if(itr->getEnviadaPor() == id){
-                    cout << nome_usuario << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;
-                //}
-            //}
+            for (auto ptr = usuarios.begin(); ptr != usuarios.end(); ptr++){
+                if(ptr->id == itr->getEnviadaPor()){
+                    //if(itr->getConteudo() != ""){
+                        cout << ptr->nome << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;
+                    //}
+                }
+            }
         }
     }
 }

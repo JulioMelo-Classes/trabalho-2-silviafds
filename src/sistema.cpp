@@ -443,17 +443,15 @@ string Sistema::send_message(int id, const string mensagem) {
 string Sistema::list_messages(int id) {
 
   string canal_visualizado, servidor_visualizado, nome_usuario;
-  int id_usuario;
 
   if(usuariosLogados.find(id) != usuariosLogados.end()){
     auto iter = usuariosLogados.find(id);
-    id_usuario = iter->first;
     canal_visualizado = iter->second.second;
     servidor_visualizado = iter->second.first;
 
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
-        ptr->listarMensagensCanais(usuarios, id);
+        ptr->listarMensagensCanais(usuarios, canal_visualizado, id);
       }
     }
 
