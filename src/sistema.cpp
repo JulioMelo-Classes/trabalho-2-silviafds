@@ -453,7 +453,7 @@ string Sistema::list_messages(int id) {
 
     for(auto ptr = servidores.begin(); ptr != servidores.end(); ptr++){
       if((*ptr).getNome_servidor() == servidor_visualizado){
-        ptr->listarMensagensCanais(usuarios, canal_visualizado, id);
+        ptr->listarMensagensCanais(usuarios, id);
       }
     }
 

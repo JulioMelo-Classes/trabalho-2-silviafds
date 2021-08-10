@@ -122,7 +122,7 @@ void Servidor::percorrerCanais(string data_hora, int id_remetente, string conteu
     }
 }
 
-void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, string canal_visto, int id){
+void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, int id){
 
     string nome_usuario;
 
@@ -133,8 +133,6 @@ void Servidor::listarMensagensCanais(vector<Usuario>& usuarios, string canal_vis
     }
 
     for(auto itr = canaisTexto.begin(); itr != canaisTexto.end(); itr++){
-        if((*itr).getNomeCanal() == canal_visto){
-            itr->listarMensagens(nome_usuario, id);
-        }
+        itr->listarMensagens(nome_usuario, id);
     }
 }

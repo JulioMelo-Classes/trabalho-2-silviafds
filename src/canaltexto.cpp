@@ -34,11 +34,11 @@ void CanalTexto::listarMensagens(string nome_usuario, int id){
         cout << "Sem mensagens para exibir." << endl;
     }else{
         for(auto itr = mensagens.begin(); itr != mensagens.end(); itr++){
-            if(itr->getConteudo() != ""){
-                if(itr->getEnviadaPor() == id){
+            //if(itr->getConteudo() != ""){
+                //if(itr->getEnviadaPor() == id){
                     cout << nome_usuario << itr->getData_hora() << ": " <<  itr->getConteudo() << endl;
-                }
-            }
+                //}
+            //}
         }
     }
 }
