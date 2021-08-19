@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+/*
+cp2 ok
+*/
 class Mensagem{
 	private:
 		string dataHora; // string que armazena a data e a hora que um(a) usuário(a) enviou uma mensagem.

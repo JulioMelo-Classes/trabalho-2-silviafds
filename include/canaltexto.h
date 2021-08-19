@@ -6,6 +6,9 @@
 #include "usuario.h"
 using namespace std;
 
+/*
+cp2 ok
+*/
 class CanalTexto{
 	private:
 		string nome; //nome do canal que foi criado pelo(a) usuário(a).

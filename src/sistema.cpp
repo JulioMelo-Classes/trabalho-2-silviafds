@@ -229,6 +229,11 @@ string Sistema::remove_server(int id, const string nome) {
   return "";
 }
 
+/*
+A2.7 0,7
+- Quando o comando é chamado mais de uma vez para o mesmo usuário ele fica duplicado no servidor. -20%
+- Quanodo o comando é chamado com um servidor inexistente nada é imprimido. -10%
+*/
 string Sistema::enter_server(int id, const string nome, const string codigo) { 
 
   std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
@@ -259,6 +264,11 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
   return "";
 }
 
+/*
+A2.8 0,8
+- Embora você tenha removido o participante não atualizou a lista de usuarios logados para refletir que o participante
+não está mais visualizando aquele servidor. -20%
+*/
 string Sistema::leave_server(int id, const string nome) {
 
   std::map< int, std::pair<std::string, std::string> >::iterator iterator_nome;
@@ -282,6 +292,9 @@ string Sistema::leave_server(int id, const string nome) {
   return "";
 }
 
+/*
+A2.9 ok
+*/
 string Sistema::list_participants(int id) {
 
   string servidor_visualizado;
@@ -306,6 +319,9 @@ string Sistema::list_participants(int id) {
   return "";
 }
 
+/*
+B1.1 ok
+*/
 string Sistema::list_channels(int id) {
 
   string servidor_visualizado;
@@ -331,6 +347,9 @@ string Sistema::list_channels(int id) {
   return "";
 }
 
+/*
+B1.2 ok
+*/
 string Sistema::create_channel(int id, const string nome) {
 
   string servidor_visualizado;
@@ -362,6 +381,9 @@ string Sistema::create_channel(int id, const string nome) {
   return "";
 }
 
+/*
+B1.3 ok
+*/
 string Sistema::enter_channel(int id, const string nome) {
 
   string servidor_visualizado;
@@ -386,6 +408,9 @@ string Sistema::enter_channel(int id, const string nome) {
   return "";
 }
 
+/*
+B1.4 ok
+*/
 string Sistema::leave_channel(int id) {
 
   string servidor_visualizado, canal, canal2;
@@ -396,6 +421,7 @@ string Sistema::leave_channel(int id) {
     canal = iter->second.second;
 
     for(auto itr = servidores.begin(); itr != servidores.end(); itr++){
+     
       if((*itr).getNome_servidor() == servidor_visualizado){
         if(iter->second.second == ""){
           return "Você não está visualizando este canal.";
@@ -412,6 +438,10 @@ string Sistema::leave_channel(int id) {
   return "";
 }
 
+/*
+B2.1 0,9
+- quando o usuário não está em qualquer canal e tenta mandar uma mensagem nada é exibido! -10%
+*/
 string Sistema::send_message(int id, const string mensagem) {
 
   time_t timer;
@@ -440,6 +470,11 @@ string Sistema::send_message(int id, const string mensagem) {
   return "";
 }
 
+/*
+B2.2 0,8
+- Como vocês não testam o nome do canal, independente do usuário estar ou não visualizando, o sistema imprime as mensagens, inclusive
+de todos os canais do servidor! -20%
+*/
 string Sistema::list_messages(int id) {
 
   string canal_visualizado, servidor_visualizado, nome_usuario;

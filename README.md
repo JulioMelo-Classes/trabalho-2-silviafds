@@ -1,6 +1,7 @@
 # Projeto 2: Concordo
 ## Clone do Discord, para humanos mais civilizados
 
+<!--como voces não fizeram ou documentaram arquivos de teste vou considerar 0 neste quesito-->
 * **Como compilar o projeto:**
     - Basta entrar na pasta Build, e digitar no terminal os seguintes comandos:
     - Válido para linux e windows.

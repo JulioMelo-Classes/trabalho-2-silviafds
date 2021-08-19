@@ -7,6 +7,9 @@
 #include "usuario.h"
 using namespace std;
 
+/*
+Cp2 ok
+*/
 class Servidor{
 	private:
 		int usuarioDonold;//id do usuário que criou o servidor.
